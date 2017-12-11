@@ -1,0 +1,199 @@
+/******** FOR THE LOGO (LEFT) ********/
+
+header.top .logo{
+    text-align: left;
+    min-width: 180px; 
+    padding: 20px;
+    font-size: 1.5em;
+}
+
+/******** FOR THE NAVIGATION (CENTER) ********/
+
+header.top .navcontainer{
+    flex-grow: 1; /* Changes it's size dynamically based on available space left in .alerts */
+    overflow: hidden; /* So the nav items above the top (ul.back) won't show when not needed */
+}
+
+header.top .navcontainer nav{
+    height: 140px;
+    margin: -70px 0 0; /* Change navbar position 70px over top and remove default list margin */
+    transform-style: preserve-3d;
+    transition: all 0.15s linear;
+}
+
+header.top .navcontainer nav ul{
+    list-style: none; /* Remove default list dots */
+    padding: 0; /* Remove default list padding */
+    margin: 0; /* Remove default list margin */
+    width: auto;
+    height: 70px;
+    font-size: 1.5em;
+    display: flex;
+    overflow: hidden; /* Third li has <a> outside of container (??) */
+}
+
+header.top .navcontainer nav ul li{
+    width: 30px;
+    height: 30px;
+    padding: 20px;
+}
+
+header.top .navcontainer nav ul li img{
+    width: 30px;
+    height: 30px;
+}
+
+header.top .navcontainer nav ul.back li img{ /* Rotate backface ul images so theyre not upside down */
+    transform: rotateX(180deg);
+}
+
+header.top .navcontainer nav ul a:hover{
+    background-color: rgba(132, 210, 246, 0.75);
+}
+
+header.top .navcontainer nav ul a:hover img{
+    filter: invert(100%);
+}
+
+header.top .navcontainer nav ul a:hover img.invert{
+    filter: invert(0%); /* un-invert (white) image if it's already inverted */
+}
+
+/******** FOR THE MENU (RIGHT) ********/
+
+header.top ul.menu{
+    list-style: none;
+    font-size: 1.5em;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+header.top ul.menu li{
+    padding: 11px 20px;
+    max-height: 70px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+header.top ul.menu li span{
+    margin-left: 8px; /* Add some distance between .profile-picture and description */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+header.top ul.menu li .profile-picture{
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    vertical-align: middle; /* So it's aligned with the description span */
+    display: inline-block;
+    background: #ffffff url("../img/astronaut.jpg") no-repeat center;
+    background-size: cover;
+}
+
+header.top ul.menu a, a:visited{
+    color: #000;
+}
+
+header.top ul.menu a:hover li{
+    color: #FFF;
+    background-color: rgba(132, 210, 246, 0.75);
+}
+
+header.top ul.menu .dropdown{
+    position: relative; /* So it's child can be positioned absolute */
+    height: 70px;
+}
+
+header.top ul.menu .dropdown:hover > a li{ /* To keep the menu li look selected (Username), used > selector so the li's in the .dropdown-content ul won't look hovered */
+    color: #FFF;
+    background-color: rgba(132, 210, 246, 0.75);
+}
+
+header.top ul.menu .dropdown ul.dropdown-content{
+    display: none;
+    background-color: #FFF;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.28);
+    position: absolute;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    top: 70px;
+    z-index: -1;
+    text-align: left;
+    width: 201px;
+    overflow: hidden;
+}
+
+header.top ul.menu .dropdown:hover ul.dropdown-content{
+    display: block; /* .dropdown contains the ul.menu li and the ul.dropdown-content, so when hovering over both it will keep the ul.dropdown-content displayed */
+}
+
+header.top ul.menu .dropdown ul.dropdown-content img{
+    width: 20px;
+    height: 20px;
+    margin-right: 11px; /* Added some extra spacing/margin here (on top of the 8px margin-left of the span) */
+    vertical-align: middle;
+}
+
+header.top ul.menu .dropdown ul.dropdown-content li:hover img{
+    filter: invert(100%);
+}
+
+@media screen and (max-width: 1024px){
+    
+    /******** ALERTS ********/
+    
+    header.top {
+        padding: 0 7% 0 calc(70px + 7%); /* Add padding left, because the .navcontainer is there now */
+        transition: padding 0.3s ease 0.1s;
+    }
+    
+    /******** FOR THE NAVIGATION (CENTER) ********/
+    
+    header.top .navcontainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        left: 0;
+        position: fixed;
+        background-color: #FFFFFF;
+        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.28);
+        height: 100vh;
+        transition: all 0.3s ease;
+    }
+
+    header.top .navcontainer nav {
+        width: 70px; /* All items are on one line */
+        height: auto;
+        margin: 0;
+    }
+    
+    header.top .navcontainer nav ul{
+        list-style: none; /* Remove default list dots */
+        height: auto;
+        width: 70px;
+        font-size: 1.5em;
+        display: flex;
+        flex-direction: column;
+        padding: 0; /* Remove default list padding */
+        margin: 0; /* Remove default list margin */
+        overflow: hidden; /* Third li has <a> outside of container (??) */
+    }
+    
+    header.top .navcontainer nav ul.back li img{ /* No need for rotation, theyre all on one line */
+        transform: none;
+    }
+    
+    /******** FOR THE MENU (RIGHT) ********/
+    
+    header.top ul.menu .dropdown > a > li > span{ /* Remove the menu li description so there's only the image */
+        display: none;
+    }
+    
+    header.top ul.menu ul.dropdown-content {
+        right: 0;
+    }
+    
+}

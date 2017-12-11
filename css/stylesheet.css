@@ -1,0 +1,641 @@
+/**
+    Primary color: 133C55
+    secondary color: 386FA4
+    3: 59A5D8
+    4: 84D2F6
+    5: 91E5F6
+**/
+
+body{
+    background-color: #EEE;
+    margin: 0;
+    font-family: "Roboto","Helvetica Neue",Arial,sans-serif;
+}
+
+a {
+    /* Remove default <a> text decoration */
+    text-decoration: none; 
+}
+
+header{
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 13px;
+    margin-bottom: 13px;
+    box-sizing: content-box;
+}
+
+header .description{
+    font-size: 0.975em;
+    color: #9A9A9A;
+    margin-left: 5px;
+}
+
+header .title{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    font-weight: 300;
+    font-size: 1.5em;
+}
+
+figure{ 
+    /* Remove default <figure> margin */
+    margin: 0;
+}
+
+img.invert{
+    /* All our backend pictures are white so make them black */
+    -webkit-filter: invert(100%);
+}
+
+article{
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/******** TOP OF THE WEBSITE ********/
+
+header.top{
+    width: 100%;
+    max-height: 70px;
+    padding: 0 7%;
+    margin: 0;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.28);
+    z-index: 1;
+    transition: padding 0.3s ease 0.1s;
+    box-sizing: border-box;
+}
+
+/******** HEADER/ITEMS ********/
+
+header.hero {
+    background-image: url('../img/banner4.png');
+    background-size: cover;
+    background-position: left bottom;
+    margin: 0;
+    padding-top: 111px;
+    padding-bottom: 86px;
+    width: 86%;
+    background-color: #59A5D8;
+    padding-left: 7%;
+    padding-right: 7%;
+    border-bottom: 28px solid #59A5D8;
+}
+
+header.hero ul.items{
+    margin: 0; 
+    padding: 0;
+    text-transform: uppercase;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+header.hero ul.items li{
+    flex: 1 1 1;/* All li get the same width for start */
+    max-width: 9em;
+    overflow: hidden;
+    transition: 0.5s;
+    border-radius: 5px;
+    padding: 2%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+header.hero ul.items li:hover{
+    background-color: rgba(89, 208, 216, 0.7);
+    transform: scale(1.04);
+    transition-duration: 0.25s;
+}
+
+header.hero ul.items img{
+    /* -webkit-filter: invert(10%); */
+    height: auto; /* To keep the icons aspect ratio */
+    width: auto; /* To keep the icons aspect ratio */
+    max-width: 70%;
+    max-height: 56%;
+    margin: 14% 14% 20%; /* top+left+right 14%; bottom: 20% (space between image and description) */
+}
+
+header.hero ul.items .description{
+    text-decoration: none;
+    font-size: 1em;
+    color: white;
+}
+
+/******** MAIN CONTAINER OF THE WEBSITE ********/
+.main{
+    /*transform: translate3d(-110%, 0, 0);*/
+    border-radius: 4px;
+    margin: -80px auto 50px 5%;
+    position: absolute; /* For the spacing at the bottom */
+    width: 90%;
+    display: inline-block;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.28);
+    transition: 1s;
+    overflow: hidden;
+}
+
+/******** FOOTER ********/
+footer{
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 20px;
+    align-items: center;
+    border-top: thin solid #dedede;
+}
+
+footer label{
+    font-size: 0.9em;
+    text-align: center;
+    color: #000000;
+    flex: 0 0 33%;
+}
+
+footer label img{
+    vertical-align: text-top;
+    padding: 0 5px;
+    height: 1em;
+    width: auto;
+}
+
+/******** CONTAINER ADDITIONS ********/
+.profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile img.profile{
+    background-color: #EEE;
+    margin-top: -20px;
+    margin-left: -20px;
+    width: 120%;;
+    height: 150px;
+    display: flex;
+}
+
+.profile .picture{
+    overflow: hidden;
+    border-radius: 10px;
+    margin-top: -10%;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+/******** ROWS ********/
+.row{
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+/******** FOR game.html MAPS ********/
+
+figure.map figcaption.gradient{
+    background: rgba(0,0,0,0);
+    background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(100%, rgba(0,0,0,1)));
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+    background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+    background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
+}
+
+figure.map figcaption{
+    color: #fff;
+    text-shadow: 0px 0px 6px rgb(0, 0, 0);
+    font-size: 2.5em;
+    width: 100%;
+    height: 25%;
+    position: absolute;
+    bottom: 0;
+    padding: 3% 16px;
+    box-sizing: border-box;
+    transition: all 0.6s;
+}
+
+figure.map{
+    position: relative;
+    height: 350px;
+    overflow: hidden;
+}
+
+figure.map:hover figcaption{
+    bottom: -25%;
+}
+
+figure.map:hover img{
+    transform: scale(1.2);
+}
+
+figure.map img{
+    object-fit: cover;
+    min-width: 100%;
+    height: 100%;
+    transition: all 0.6s;
+}
+
+ul.gallery{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+ul.gallery li{
+    position: relative;
+    display: block;
+    min-width: 200px;
+    width: calc(20% - 40px); /* Adjust for the .card margin */
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 200px;
+    max-height: 220px;
+}
+
+ul.gallery li:hover figcaption{
+    top: 25%;
+    background-color: #59A5D8;
+}
+
+ul.gallery li:hover img{
+    transform: scale(0.8);
+}
+
+ul.gallery li img{
+    object-fit: contain;
+    min-height: 200px;
+    max-height: 200px;
+    max-width: 100%;
+    transition: all .8s;
+}
+
+ul.gallery li figcaption{
+    position: absolute;
+    top: 80%;
+    color: #fff;
+    background-color: rgb(89, 165, 216);
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    transition: all .8s;
+    padding: 14px;
+    box-sizing: border-box;
+}
+
+ul.gallery li figcaption header{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+/******** CONTAINERS ********/
+.border{ /* Add this class to add a bottom and top border to e.g. a row/cont */
+    margin-top: 15px;
+    border-top: thin solid #dedede;
+    border-bottom: thin solid #dedede;
+    margin-bottom: 15px;
+}
+
+.card{ /* Add this class to add a card layout to e.g. a row/cont */
+    transition: 1s;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 3px 1px #ccc;
+    box-sizing: border-box;
+    margin: 20px;
+}
+
+.card .content{
+    margin: 20px;
+}
+
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.cont1{
+    transition: 1s;
+    width: 8.33333%;
+    overflow: hidden;
+}
+.cont2{
+    transition: 1s;
+    width: 16.6666%;
+    overflow: hidden;
+}
+.cont3{
+    transition: 1s;
+    width: 25%;
+    overflow: hidden;
+}
+.cont4{
+    transition: 1s;
+    width: 33.3333%;
+    overflow: hidden;
+}
+.cont5{
+    transition: 1s;
+    width: 41.6666%;
+    overflow: hidden;
+}
+.cont6{
+    transition: 1s;
+    width: 50%;
+    overflow: hidden;
+}
+.cont7{
+    transition: 1s;
+    width: 58.3333%;
+    overflow: hidden;
+}
+.cont8{
+    transition: 1s;
+    width: 66.6666%;
+    overflow: hidden;
+}
+.cont9{
+    transition: 1s;
+    width: 75%;
+    overflow: hidden;
+}
+.cont10{
+    transition: 1s;
+    width: 83.3333%;
+    overflow: hidden;
+}
+.cont11{
+    transition: 1s;
+    width: 91.6666%;
+    overflow: hidden;
+}
+.cont12{
+    transition: 1s;
+    width: 100%;
+    overflow: hidden;
+}
+
+/******** TABLES ********/
+table.stats a {
+    text-decoration: none;
+    color: #59A5D8;
+}
+table.stats{
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: #f9f9f9;
+}
+table.stats tr:nth-of-type(even) {
+    background-color:#FFFFFF;
+  }
+table.stats td{
+    border-top: 1px solid #ddd;
+    padding: 12px 20px;
+}
+table.stats tr:hover{
+    background-color: #F0F0F0;
+}
+table.stats th{
+    padding-left: 20px;
+    text-align: left;
+}
+
+/******* PROFILE *******/
+.card .image {
+    background: #000000 url("../img/banner5.png") no-repeat center bottom;
+    background-size: cover;
+    /* height: 43%; */
+    height: 150px; /* Otherwise the picture wont be shown since the container does not have a heigth in pixels */
+    max-height: 200px;
+}
+
+.card .profile-picture{
+    background: #ffffff url("../img/astronaut.jpg") no-repeat center;
+    position: relative; /* So it's above .image and .content */
+    background-size: cover;
+    height: 120px;
+    width: 120px;
+    margin: -63px auto; /* -63px because (120px/2 = )60px + 3px (border-top and border-bottom are both 3px (=6px))*/
+    border-radius: 50%;
+    border: 3px solid #EEE;
+    transition: 0.5s;
+}
+
+.card .profile-picture:hover{
+    transform: scale(1.2);
+    transition-duration: 0.25s;
+}
+
+.card .profile-picture:hover + .profile-content{
+    transform: scale(0.8);
+    transition-duration: 0.25s;
+}
+
+.card .profile-content{
+    transition: 0.5s;
+    transform-origin: bottom;
+    padding: 60px 0px 20px;
+}
+
+.card .profile-content .username{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 1.5em;
+}
+
+.card .profile-content .description{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 1.1em;
+    color: grey;
+}
+
+
+/****** THIS IS FOR GATHERSTUFF / CREATING MATCHES *****/
+/***** Main Containers *****/
+
+/* Container for T */
+.t-container{
+    background-color: #FDFDFD;
+    padding: 0;
+    margin: 1%;
+    float: left;
+    width: 25%;
+    display: flex;
+    flex-direction:column;
+    margin-bottom: 0px;
+    z-index: 1;
+}
+
+/* Container for the mid items */
+.mid-container{
+    float: left;
+    width: 44%;
+    margin: 1%;
+}
+/***** Smaller containers that go inside main containers *****/
+.t-container .t{
+    margin-bottom: 25px;
+    overflow: hidden;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 3px 1px #ccc;
+    width: 100%;
+    height: 175px;
+    box-sizing: border-box;
+}
+
+.mid-container .stats{
+    padding: 2%;
+    overflow: hidden;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 3px 1px #ccc;
+    width: 100%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.mid-container .status{
+    padding: 2%;
+    overflow: hidden;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 3px 1px #ccc;
+    width: 100%;
+    
+    box-sizing: border-box;
+}
+
+/***** CSS for items inside the containers *****/
+.t-container .image {
+    background: #000000 url("../img/banner5.png") no-repeat center bottom;
+    background-size: cover;
+    height: 43%;
+}
+
+.t-container .profile-picture{
+    background: #ffffff url("../img/astronaut.jpg") no-repeat center;
+    position: relative; /* So it's above .image and .content */
+    background-size: cover;
+    height: 110px;
+    width: 110px;
+    margin: -58px auto; /* -58px because border-top and border-bottom are both 3px (=6px)*/
+    border-radius: 50%;
+    border: 3px solid #EEE;
+    transition: 0.5s;
+}
+
+/*.profile-picture:hover{
+    transform: scale(1.2);
+    margin-bottom: -30px; /* Make some space... 
+}*/
+
+.t-container .content{
+    height: 70%;
+    max-height: 400px;
+    padding: 60px 25px 25px;
+}
+
+.t-container .username{
+    display: flex;
+    justify-content: center;
+    font-size: 1.5em;
+}
+
+@media screen and (max-width: 1024px) {
+
+    .main{
+        margin-top: -280px; /* Move main container further over the <header> */
+    }
+    
+    ul.gallery li{
+        width: calc(33.33333% - 40px); /* Adjust for the .card margin */
+    }
+
+    header.hero {
+        height: 170px; /* <header> is now empty so it needs a fixed height so it won't shrink */
+    }
+    
+    header.hero ul.items {
+        display: none;
+    }
+    
+    figure.map{
+        border: thin solid #000;
+    }  
+    
+    .container-main{
+        position: absolute;
+        margin-left: 70px;
+        width: calc(100% - 70px);
+        transition: all .5s;
+    }
+    
+    .cont1,
+    .cont2,
+    .cont3,
+    .cont4,
+    .cont5,
+    .cont6,
+    .cont7,
+    .cont8,
+    .cont9,
+    .cont10,
+    .cont11,
+    .cont12{
+        width: 96%;
+        margin: 2% 2%;
+        box-sizing: border-box;
+    }
+
+    .image{
+        height: 150px;
+    }
+    .row{
+        flex-direction:column;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    
+    ul.gallery li{
+        width: 100%;
+    }
+    
+    .cont1,
+    .cont2,
+    .cont3,
+    .cont4,
+    .cont5,
+    .cont6,
+    .cont7,
+    .cont8,
+    .cont9,
+    .cont10,
+    .cont11,
+    .cont12{
+        width: 94%;
+        margin: 3% 3%;
+    }
+}

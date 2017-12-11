@@ -1,0 +1,46 @@
+
+input, textarea, select {
+    padding: 9px;
+    border: solid 1px #E5E5E5; 
+    width: 78%; /* Border of 1px... D: */
+    background: #FFFFFF;
+    box-sizing: border-box;
+}
+   
+textarea { 
+    width: 100%; 
+    min-height: 150px;
+    resize: vertical; /* So it can't be resized vertically */
+}
+   
+input:hover, textarea:hover, 
+input:focus, textarea:focus { 
+    border-color: rgba(35, 173, 255, 1);
+}
+   
+.form label {
+    display: inline-block;
+    text-align: right;
+    margin-left: 2%;
+    width: 18%;
+    color: #999999;
+}
+   
+@media screen and (max-width: 1024px) {
+
+    input, select{
+        width: 75%;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    
+        .form label{
+            display: none;
+        }
+
+        input, select{
+            width: 100%;
+        }
+}
