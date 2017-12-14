@@ -17,8 +17,22 @@ require('php/functions.php');
         <script src="js/main.js"></script>
         
     <script type="text/javascript"> 
-    var currentStart = 0;
+        var currentStart = 0; // Needed for the pages
+        /**
+            Functions for getting/editing and saving stock information
+         */
+        function ShowStockInfo(el) {
+            var search = $('#stock_search').val();
 
+            $.ajax({
+                type: 'post', // Type = post
+                data: {stockinfo: ' ', start: currentStart, end: currentStart+10, search: search}, // Given variable
+                url: "/php/ajax.php", // Link to your ajax file
+                success: function(result){
+                    $('#stockinfo').html(result);
+                    GetPages();
+            }});
+        };
         function ShowProductInfo(el) {
             var id = $(el).attr('id'); 
             
@@ -31,6 +45,38 @@ require('php/functions.php');
             }});
         };
 
+        function EditProductInfo(el) {
+            var id = $(el).attr('value'); 
+
+            $('.stock').each(function(){
+                var stock = $(this).attr('value');
+
+                $(this).html("<input type='text' id='stock' value='"+ stock + "'></input>"); 
+            });
+
+            $('#edit').html("<label class='message correct' OnClick='SaveProductInfo(this)' id='" + id + "'>Save</label>");
+        };
+
+        function SaveProductInfo(el) {
+            var id = $(el).attr('id'); 
+            
+            $('.stock').each(function(){
+                var stock = $(this).find('input').val();
+                var date = $(this).attr('id');
+
+                $.ajax({
+                    type: 'post', // Type = post
+                    data: {save_productinfo: id, date: date, stock: stock}, // Given variable
+                    url: "/php/ajax.php", // Link to your ajax file
+                    success: function(result){
+                        $('#productinfo').html(result);
+                }});
+            });
+        };
+
+        /**
+            Code needed for the switch between pages
+         */
         function Next() {
             var start = currentStart + 10;
             
@@ -72,15 +118,23 @@ require('php/functions.php');
             }});
         }
 
+        /**
+            Load stuff on page load
+         */
         $(document).ready(function() {
             $.ajax({
                 type: 'post', // Type = post
-                data: {stockinfo: ' ', start: '0', end: '10'}, // Given variable
+                data: {stockinfo: ' ', start: '0', end: '10', search: ' '}, // Given variable
                 url: "/php/ajax.php", // Link to your ajax file
                 success: function(result){
                     $('#stockinfo').html(result);
                     GetPages();
             }});
+
+            // WHen somebodyy is searching :)
+            $('#stock_search').keyup(function(e) {
+                ShowStockInfo(e);
+            });
         });
     </script>
          
@@ -189,9 +243,14 @@ require('php/functions.php');
                             <header>
                                 <h4 class="title">Stock Display</h4>
                                 <p class="description">Click on a product to get more information</p>
+                                <div class="row">
+                                    <div class="cont12 card right content">
+                                        <input id='stock_search' class='cont2' type='text'></input>
+                                    </div>
+                                </div>
                             </header>
                             <div id='productinfo'></div>                        
-                            <div id='stockinfo'><?php GetStockInfo(0, 0, 10); ?></div>
+                            <div id='stockinfo'><?php GetStockInfo(0, 0, 10, ''); ?></div>
                             <footer>
                                 <label OnClick='Previous()'>Previous</label>
                                 <label id='pages'>

@@ -7,7 +7,11 @@ if(isset($_POST['product_id'])) {
 }
 
 if(isset($_POST['stockinfo'])) {
-    GetStockInfo(0, $_POST['start'], $_POST['end']);
+    GetStockInfo(0, $_POST['start'], $_POST['end'], $_POST['search']);
+}
+
+if(isset($_POST['save_productinfo'])) {
+    echo SaveStockInfoProduct($_POST['save_productinfo'], $_POST['date'], $_POST['stock']);
 }
 
 if(isset($_POST['stockpages'])) {
