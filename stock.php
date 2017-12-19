@@ -14,19 +14,111 @@ require('php/functions.php');
         <!-- <link href="css/stylesheet.css" rel="stylesheet" type="text/css"> -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script src="js/main.js"></script>
         
-    <script type="text/javascript"> 
+    <script type="text/javascript">
         var currentStart = 0; // Needed for the pages
+
+        google.charts.load('current', {packages: ['corechart', 'line', 'bar']});
+        LoadAllCharts(); // TODO Add this to a different element so i can reload it on stock edit / product edt
+
+        function LoadAllCharts() {
+            google.charts.setOnLoadCallback(drawStockInfo);
+            google.charts.setOnLoadCallback(drawOmzet);
+            google.charts.setOnLoadCallback(drawTop5Products);
+            google.charts.setOnLoadCallback(drawOrderStatus);
+        }
+
+        function drawOmzet() {
+
+            var jsonData = $.ajax({
+                url: "php/charts/getOmzet.php",
+                dataType: "json",
+                async: false
+                }).responseText;
+
+            var data = new google.visualization.DataTable(jsonData);
+
+            var options = {
+                chartArea: {width: '50%'},
+                hAxis: {
+                title: 'Annual Turnover',
+                minValue: 0
+                },
+                vAxis: {
+                title: 'Customer'
+                }
+            };
+
+            var chart = new google.visualization.BarChart(document.getElementById('chart_div_omzet'));
+
+            chart.draw(data, options);
+        };
+
+        function drawTop5Products() {
+            var jsonData = $.ajax({
+                url: "php/charts/getTop5Products.php",
+                dataType: "json",
+                async: false
+                }).responseText;
+
+            var data = new google.visualization.DataTable(jsonData);
+
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_circle'));
+            chart.draw(data, {});
+        }
+
+        function drawOrderStatus() {
+            var jsonData = $.ajax({
+                url: "php/charts/getOrderStatus.php",
+                dataType: "json",
+                async: false
+                }).responseText;
+
+            var data = new google.visualization.DataTable(jsonData);
+
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_circle2'));
+            chart.draw(data, {});
+        }
+
+        function drawStockInfo() {
+            var jsonData = $.ajax({
+                url: "php/charts/getStockInfo.php",
+                dataType: "json",
+                async: false
+                }).responseText;
+      
+            // Create our data table out of JSON data loaded from server.
+            var data = new google.visualization.DataTable(jsonData);
+      
+
+            var options = {
+                hAxis: {
+                title: 'Time'
+                },
+                vAxis: {
+                title: 'Stock'
+                },
+                series: {
+                1: {curveType: 'function'}
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+            }
+
         /**
             Functions for getting/editing and saving stock information
          */
         function ShowStockInfo(el) {
             var search = $('#stock_search').val();
+            var show_0 = $('#show_0_stock').is(":checked")
 
             $.ajax({
                 type: 'post', // Type = post
-                data: {stockinfo: ' ', start: currentStart, end: currentStart+10, search: search}, // Given variable
+                data: {stockinfo: ' ', start: currentStart, end: currentStart+10, search: search, show_0: show_0}, // Given variable
                 url: "/php/ajax.php", // Link to your ajax file
                 success: function(result){
                     $('#stockinfo').html(result);
@@ -79,10 +171,12 @@ require('php/functions.php');
          */
         function Next() {
             var start = currentStart + 10;
-            
+            var show_0 = $('#show_0_stock').is(":checked")
+            var search = $('#stock_search').val();
+
             $.ajax({
                 type: 'post', // Type = post
-                data: {stockinfo: ' ', start: start, end: start + 10}, // Given variable
+                data: {stockinfo: ' ', start: start, end: start + 10}, search: search, show_0: show_0, // Given variable
                 url: "/php/ajax.php", // Link to your ajax file
                 success: function(result){
                     $('#stockinfo').html(result);
@@ -95,10 +189,12 @@ require('php/functions.php');
             if (!currentStart == 0) {
 
                 var start = currentStart - 10;
-                
+                var show_0 = $('#show_0_stock').is(":checked")
+                var search = $('#stock_search').val();
+
                 $.ajax({
                     type: 'post', // Type = post
-                    data: {stockinfo: ' ', start: start, end: start + 10}, // Given variable
+                    data: {stockinfo: ' ', start: start, end: start + 10, search: search, show_0: show_0}, // Given variable
                     url: "/php/ajax.php", // Link to your ajax file
                     success: function(result){
                         $('#stockinfo').html(result);
@@ -122,9 +218,10 @@ require('php/functions.php');
             Load stuff on page load
          */
         $(document).ready(function() {
+
             $.ajax({
                 type: 'post', // Type = post
-                data: {stockinfo: ' ', start: '0', end: '10', search: ' '}, // Given variable
+                data: {stockinfo: ' ', start: '0', end: '10', search: ' ', show_0: true}, // Given variable
                 url: "/php/ajax.php", // Link to your ajax file
                 success: function(result){
                     $('#stockinfo').html(result);
@@ -246,11 +343,56 @@ require('php/functions.php');
                                 <div class="row">
                                     <div class="cont12 card right content">
                                         <input id='stock_search' class='cont2' type='text'></input>
+                                        <label class="container">Show 0 stock
+                                        <input OnClick='ShowStockInfo()' id='show_0_stock' type="checkbox" checked>
+                                        <span class="checkmark"></span>
+                                        </label>
                                     </div>
                                 </div>
                             </header>
-                            <div id='productinfo'></div>                        
-                            <div id='stockinfo'><?php GetStockInfo(0, 0, 10, ''); ?></div>
+                            <div id='productinfo'></div>
+                            <div id='productcharts'></div>
+                            <div class="row">
+                                <div class="card cont12">       
+                                    <header>
+                                        <h4 class='title'>Stock over a period of time</h4>
+                                        <p class="description">Show the stock data for the currently selected product</p>
+                                    </header>          
+                                    <div id="chart_div"></div>              
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="card cont4">       
+                                    <header>
+                                        <h4 class='title'>Top 5 most sold products</h4>
+                                        <p class="description">Showing the 5 products that have been sold the most.</p>
+                                    </header>          
+                                    <div id="chart_div_circle"></div>              
+                                </div>
+                                <div class="card cont4">       
+                                    <header>
+                                        <h4 class='title'>Orders and there status for specific customer</h4>
+                                        <p class="description">Showing all the orders and there status.</p>
+                                    </header>          
+                                    <div id="chart_div_circle2"></div>              
+                                </div>
+                                <div class="card cont4">       
+                                    <header>
+                                        <h4 class='title'>Annual turnover for all the customers</h4>
+                                        <p class="description">Showing annual turnover for all the customers we have.</p>
+                                    </header>          
+                                    <div id="chart_div_omzet"></div>              
+                                </div>
+                                <div class="card cont4">       
+                                    <header>
+                                        <h4 class='title'>Annual turnover for all the customers</h4>
+                                        <p class="description">Showing annual turnover for all the customers we have.</p>
+                                    </header>          
+                                    <div id="chart_div_omzet"></div>              
+                                </div>
+                            </div>
+                            
+                            <div id='stockinfo'><?php GetStockInfo(0, 0, 10, '', true); ?></div>
                             <footer>
                                 <label OnClick='Previous()'>Previous</label>
                                 <label id='pages'>

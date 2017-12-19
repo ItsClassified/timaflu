@@ -2,12 +2,14 @@
 
 function ConnectDatabase() {
     // $db = new PDO('mysql:host=databases.aii.avans.nl;dbname=mcbeurde1_db;charset=utf8mb4', 'mcbeurde1', 'Ab12345');
-    $db = new PDO('mysql:host=localhost;dbname=timaflu;charset=utf8mb4', 'root', '');
+    $db = new PDO('mysql:host=databases.aii.avans.nl;dbname=mcbeurde1_db2;charset=utf8mb4', 'mcbeurde1', 'Ab12345');
+    // $db = new PDO('mysql:host=localhost;dbname=timaflu;charset=utf8mb4', 'root', '');
 
     return $db;
 }
 
-function GetStockInfo($date, $start, $end, $search){
+////////////////////////////////////////////////////////////////////////////
+function GetStockInfo($date, $start, $end, $search, $show_0){
     $db = ConnectDatabase();
 
     $sql = "SELECT p.name AS pname,
@@ -20,35 +22,18 @@ function GetStockInfo($date, $start, $end, $search){
         ON s.product_id = p.id
     INNER JOIN strength_units AS su
         ON p.strength_unit = su.id
-    WHERE current = 1";
+    WHERE s.current = 1";
         
     if($search != ' '){
-        $sql = $sql . " AND p.name LIKE '%$search%' ";
+        $sql = $sql . " AND p.name LIKE '%$search%'";
+    }
+
+    if(!$show_0){
+        $sql = $sql . " AND s.stock != 0";
     }
 
     $sql = $sql . " GROUP BY product_id LIMIT $start,$end";
 
-
-    // $sql = "SELECT * FROM products AS p WHERE ?name? ";
-    
-    // if($name != ' '){
-    //     //replace ?name? met "p.name LIKE %$name"
-    // }
-
-    // Select all the absic stock data we need
-    // $result = $db->prepare("SELECT p.name AS pname,
-    //                             p.strength_quantity AS pstrength,
-    //                             su.unit AS sunit,
-    //                             SUM(s.stock) AS stock,
-    //                             s.product_id AS sproduct_id
-    //                         FROM stock AS s
-    //                         INNER JOIN products AS p
-    //                             ON s.product_id = p.id
-    //                         INNER JOIN strength_units AS su
-    //                             ON p.strength_unit = su.id
-    //                         WHERE current = 1
-    //                             GROUP BY product_id LIMIT $start,$end"); // $start en $end are given with the fucntion, this makes it possible to show 10 and when you press NEXT it shows the next 10. 0-10/10-20/20-30
-    
     $result = $db->prepare($sql);
     $result->execute();
 
@@ -102,7 +87,10 @@ function SaveStockInfoProduct($productid, $date, $stock) {
     $oldstock = $row['stock'];
 
     // If old stock is the same as the new stock, do nothing
-    if($oldstock == $stock) GetStockInfoProduct($productid); return;
+    if($oldstock == $stock) {
+        GetStockInfoProduct($productid);
+        return;
+    }
     
     // Insert a new entry into the database using the data we collected earlier from our old stock data (use new stock tho ;)
     $db->exec("INSERT INTO stock (product_id, date, manufacturer_id, expiry_date, price, current, stock) VALUES('$productid', CURRENT_TIMESTAMP, '$manufactur', '$expiry_date', '$price', '1', '$stock')");
@@ -136,11 +124,12 @@ function GetStockInfoProduct($productid){
                                 ON p.strength_unit = su.id
                             INNER JOIN manufacturers AS m
                                 ON m.id = p.manufacturer_id
-                            WHERE current = 1 AND s.product_id = $productid");
+                            WHERE s.current = 1 AND s.product_id = $productid");
     $result->execute();
 
     // Fetch all the data into rows
     $rows = $result->fetchAll(PDO::FETCH_ASSOC);
+    // Print basic information for the table wer are going to use
     echo "<div class='card'>" ;
     echo "<table class='stats'>";
         echo "<tr>";
@@ -252,4 +241,35 @@ function GetStockInfoProduct($productid){
     
     //     return $info;
     // }
-    ?>
+
+    function DrawTable($query)
+    {
+        $db = ConnectDatabase();
+             
+            $result = $db->prepare($query);                           
+            $result->execute();
+            $colcount = $result->columnCount();
+            
+        
+            echo "<table class='stats'>";
+            echo "<tr>";
+            for ($i = 0; $i < $colcount; $i++){
+                $meta = $result->getColumnMeta($i)["name"];
+                echo('<th>' . ucfirst($meta) . '</th>');
+            }
+            echo('</tr>');
+        
+    
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) 
+            {
+                echo('<tr>');
+                for ($i = 0; $i < $colcount; $i++){
+                    $meta = $result->getColumnMeta($i)["name"];
+                    echo('<td>' . $row[$meta] . '</td>');
+                }
+                echo('</tr>');
+            }
+            echo "</table>";
+        
+    }    
+?>
