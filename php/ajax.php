@@ -1,13 +1,14 @@
+<script src="js/charts.js"></script>
+
 <?php
 require('functions.php');
-
 
 if(isset($_POST['product_id'])) {
     GetStockInfoProduct($_POST['product_id']);
 }
 
 if(isset($_POST['stockinfo'])) {
-    GetStockInfo(0, $_POST['start'], $_POST['end'], $_POST['search'], $_POST['show_0']);
+    GetStockInfo(0, $_POST['start'], $_POST['end'], $_POST['search']);
 }
 
 if(isset($_POST['save_productinfo'])) {
@@ -28,6 +29,24 @@ if(isset($_POST['stockpages'])) {
     }
 }
 
+if(isset($_POST['lol'])) {
+    echo "LOL";
+}
+///////////////////////////////////////////////////////////////////////////////////////////////
+if(isset($_POST['stockchart'])) {
+    echo "<div class='row'>";
+        echo "<div class='card cont12'>";
+            echo "<header>";
+                echo "<h4 class='title'>Stock over a period of time</h4>";
+                echo "<p class='description'>Show the stock data for the currently selected product</p>";
+            echo "</header>";
+            echo "<div id='stockchart'></div>";
+        echo "</div>";
+    echo "</div>";
+    ?>
+    <script type="text/javascript"> google.charts.setOnLoadCallback(drawStockInfo); </script>
+    <?php
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 if(isset($_POST['maininfo'])) {

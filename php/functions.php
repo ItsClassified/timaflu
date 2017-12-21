@@ -9,7 +9,7 @@ function ConnectDatabase() {
 }
 
 ////////////////////////////////////////////////////////////////////////////
-function GetStockInfo($date, $start, $end, $search, $show_0){
+function GetStockInfo($date, $start, $end, $search){
     $db = ConnectDatabase();
 
     $sql = "SELECT p.name AS pname,
@@ -26,10 +26,6 @@ function GetStockInfo($date, $start, $end, $search, $show_0){
         
     if($search != ' '){
         $sql = $sql . " AND p.name LIKE '%$search%'";
-    }
-
-    if(!$show_0){
-        $sql = $sql . " AND s.stock != 0";
     }
 
     $sql = $sql . " GROUP BY product_id LIMIT $start,$end";
@@ -169,7 +165,7 @@ function GetStockInfoProduct($productid){
             echo "<tr>";
         echo "<table class='stats'>";
         // Print the edit/close/delete buttons, add EditProductInfo to onlcick so it does something when we click it later on
-        echo "<footer><label class='message correct' OnClick='EditProductInfo(this)' id='edit' value='" . $productid . "'>Edit</label><label class='message warn'>Close</label><label class='message error'>Delete</label></footer>";
+        echo "<footer><label class='message correct clickable' OnClick='EditProductInfo(this)' id='edit' value='" . $productid . "'>Edit</label><label class='message warn clickable'>Close</label><label OnClick='ShowChartsStock(this)' id='" . $productid . "' class='message correct clickable'>Charts</label></footer>";
 }
 
 ?>

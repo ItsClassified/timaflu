@@ -65,34 +65,7 @@ require('php/functions.php');
             }});
         };
 
-        // function EditProductInfo(el) {
-        //     var id = $(el).attr('value'); 
-
-        //     $('.stock').each(function(){
-        //         var stock = $(this).attr('value');
-
-        //         $(this).html("<input type='text' id='stock' value='"+ stock + "'></input>"); 
-        //     });
-
-        //     $('#edit').html("<label class='message correct' OnClick='SaveProductInfo(this)' id='" + id + "'>Save</label>");
-        // };
-
-        // function SaveProductInfo(el) {
-        //     var id = $(el).attr('id'); 
-            
-        //     $('.stock').each(function(){
-        //         var stock = $(this).find('input').val();
-        //         var date = $(this).attr('id');
-
-        //         $.ajax({
-        //             type: 'post', // Type = post
-        //             data: {save_productinfo: id, date: date, stock: stock}, // Given variable
-        //             url: "/php/ajax.php", // Link to your ajax file
-        //             success: function(result){
-        //                 $('#productinfo').html(result);
-        //         }});
-        //     });
-        // };
+        
 
         /**
             Code needed for the switch between pages
