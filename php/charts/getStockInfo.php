@@ -1,9 +1,6 @@
 <?php 
 require('../functions.php');
 
-// $json['cols'][] = array('id' => "", 'label' => 'Someting else', 'pattern' => "", 'type' => 'string');
-// $json['cols'][] = array('id' => "", 'label' => 'Stock', 'pattern' => "", 'type' => 'number');
-
 $db = ConnectDatabase();
 $productid = $_POST['id'];
 

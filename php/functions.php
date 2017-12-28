@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 function ConnectDatabase() {
     // $db = new PDO('mysql:host=databases.aii.avans.nl;dbname=mcbeurde1_db;charset=utf8mb4', 'mcbeurde1', 'Ab12345');
@@ -8,6 +9,152 @@ function ConnectDatabase() {
     return $db;
 }
 
+function GetAmountOfPages($sql){
+    $db = ConnectDatabase();
+    
+    $result = $db->prepare($sql);                    
+    $result->execute();
+    
+    // Count the amount of rows
+    $row_count = $result->rowCount();
+
+    return $row_count;  
+}
+
+////////////////////////////////////////////////////////////////////////////
+// ALL THE PHP NEEDED FOR THE ORDER.PHP
+////////////////////////////////////////////////////////////////////////////
+function GetCustomers($phone, $name){
+    $db = ConnectDatabase();
+
+    $sql = "SELECT * FROM customers WHERE name LIKE '%$name%' AND phone LIKE '%$phone%' GROUP BY id LIMIT 0,20";
+
+    $result = $db->prepare($sql);
+    $result->execute();
+
+    $rows = $result->fetchAll(PDO::FETCH_ASSOC);
+    echo "<table class='stats'>";
+        echo "<tr>";
+            echo "<th>Name</th>";
+            echo "<th>Phone</th>";
+            echo "<th>Contact</th>";
+            echo "<th>URL</th>";
+        echo "</tr>";
+    for ($i=0; $i < sizeof($rows); $i++) {
+        echo "<tr id=\"" . $rows[$i]['id'] . "\" OnClick=\"SelectCustomer(this)\">";
+        echo "<td>" . $rows[$i]['name'] . "</td>";
+        echo "<td>" . $rows[$i]['phone'] . "</td>";
+        echo "<td>" . $rows[$i]['contact'] . "</td>";
+        echo "<td>" . $rows[$i]['url'] . "</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+}
+
+function GetCustomerInfo($customer_id){
+    $db = ConnectDatabase();
+
+    $result = $db->prepare("SELECT * FROM customers WHERE id = $customer_id");
+    $result->execute();
+
+    $rows = $result->fetchAll(PDO::FETCH_ASSOC);
+    echo "<div class='card'>" ;
+    echo "<table class='stats'>";
+        echo "<tr>";
+            echo "<th>Name</th>";
+            echo "<th>Phone</th>";
+            echo "<th>Contact</th>";
+            echo "<th>URL</th>";
+        echo "</tr>";
+    for ($i=0; $i < sizeof($rows); $i++) {
+        echo "<tr>";
+            echo "<td>" . $rows[$i]['name'] . "</td>";
+            echo "<td>" . $rows[$i]['phone'] . "</td>";
+            echo "<td>" . $rows[$i]['contact'] . "</td>";
+            echo "<td>" . $rows[$i]['url'] . "</td>";            
+        echo "</tr>";
+    }
+    echo "<footer><label class='message correct clickable' OnClick='ConfirmCustomer(this)' id='select' value='" . $customer_id . "'>Confirm</label><label class='message warn clickable'>Close</label><label OnClick='RemoveCustomer(this)' id='" . $customer_id . "' class='message correct clickable'>Charts</label></footer>";
+}
+
+function GetProductInfo($product_id) {
+    $db = ConnectDatabase();
+
+    $result = $db->prepare("SELECT 
+                                p.name AS name,
+                                s.stock AS stock,
+                                strength_quantity AS strength,
+                                su.unit AS sunit,
+                                parcel_size AS psize,
+                                pl.price AS price
+                            FROM
+                                products AS p
+                                    INNER JOIN
+                                price_loggs AS pl ON pl.product_id = p.id
+                                    INNER JOIN
+                                strength_units AS su ON su.id = p.strength_unit
+                                    INNER JOIN
+                                stock AS s ON s.product_id = p.id
+                            WHERE
+                                s.current = 1 AND p.current = 1
+                                    AND p.id = $product_id");
+    $result->execute();
+
+    $rows = $result->fetchAll(PDO::FETCH_ASSOC);
+
+    for ($i=0; $i < sizeof($rows); $i++) {
+        echo "<tr>";
+            echo "<td>" . $rows[$i]['name'] . "</td>";
+            echo "<td>" . $rows[$i]['stock'] . "</td>";
+            echo "<td>" . $rows[$i]['strength'] . ' ' . $rows[$i]['sunit'] . "</td>";
+            echo "<td>" . $rows[$i]['psize'] . "</td>";            
+            echo "<td>" . $rows[$i]['price'] . "</td>";            
+        echo "</tr>";
+    }
+}
+
+
+function GetProducts($start, $end, $name, $id) {
+    $db = ConnectDatabase();
+
+    $result = $db->prepare("SELECT 
+                                p.name AS name,
+                                s.stock AS stock,
+                                strength_quantity AS strength,
+                                su.unit AS sunit,
+                                parcel_size AS psize,
+                                pl.price AS price
+                            FROM
+                                products AS p
+                                    INNER JOIN
+                                price_loggs AS pl ON pl.product_id = p.id
+                                    INNER JOIN
+                                strength_units AS su ON su.id = p.strength_unit
+                                    INNER JOIN
+                                stock AS s ON s.product_id = p.id
+                            WHERE
+                                s.current = 1
+                                AND p.current = 1
+                                AND p.name LIKE '%$name%'
+                                AND p.id LIKE '%$id%'
+                            ORDER BY p.id LIMIT $start,$end");
+    $result->execute();
+
+    $rows = $result->fetchAll(PDO::FETCH_ASSOC);
+
+    for ($i=0; $i < sizeof($rows); $i++) {
+        echo "<tr>";
+            echo "<td>" . $rows[$i]['name'] . "</td>";
+            echo "<td>" . $rows[$i]['stock'] . "</td>";
+            echo "<td>" . $rows[$i]['strength'] . ' ' . $rows[$i]['sunit'] . "</td>";
+            echo "<td>" . $rows[$i]['psize'] . "</td>";            
+            echo "<td>" . $rows[$i]['price'] . "</td>";   
+        echo "</tr>";
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////
+// ALL THE PHP NEEDED FOR THE STOCK.PHP
 ////////////////////////////////////////////////////////////////////////////
 function GetStockInfo($date, $start, $end, $search){
     $db = ConnectDatabase();
@@ -53,19 +200,6 @@ function GetStockInfo($date, $start, $end, $search){
         echo "</tr>";
     }
     echo "</table>";
-}
-
-function GetAmountOfStockPages(){
-    $db = ConnectDatabase();
-
-    // Get all the stock data dat is being used
-    $result = $db->prepare("SELECT SUM(stock) FROM stock WHERE current = 1 GROUP BY product_id");                    
-    $result->execute();
-    
-    // Count the amount of rows
-    $row_count = $result->rowCount();
-
-    return $row_count;  
 }
 
 function SaveStockInfoProduct($productid, $date, $stock) {

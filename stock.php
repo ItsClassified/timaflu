@@ -16,7 +16,7 @@ require('php/functions.php');
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script src="js/main.js"></script>
-        <!-- <script src="js/charts.js"></script> -->
+        <script src="js/charts.js"></script>
     <script type="text/javascript">
         var currentStart = 0; // Needed for the pages
 
@@ -57,7 +57,7 @@ require('php/functions.php');
                 $(this).html("<input type='text' id='stock' value='"+ stock + "'></input>"); 
             });
 
-            $('#edit').html("<label class='message correct' OnClick='SaveProductInfo(this)' id='" + id + "'>Save</label>");
+            $('#edit').replaceWith("<label class='message correct' OnClick='SaveProductInfo(this)' id='" + id + "'>Save</label>");
         };
         function SaveProductInfo(el) {
             var id = $(el).attr('id'); 

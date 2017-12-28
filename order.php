@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<?php
+require('php/functions.php');
+
+
+// TODO: Add stage clases to my divs so I can hide and show them easily isntead of doing it for every div itself.
+// TODO: Add the SESSION variable, looking for someting like Array=>'Ritalin'=>2, 'Ritalin XL'=>1 , something with keys
+// TODO: Add javascript to add the items to the array when they are being pressed
+// TODO: Add the charts for the customer
+?>
+<html lang="en">
+    <head>
+        <title>Timaflu - Orders</title>
+        <link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>
+        <link rel="stylesheet" type="text/css" href="css/top.css"/>
+        <link rel="stylesheet" type="text/css" href="css/form.css" />
+        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/message.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/charts.js"></script>
+    <script type="text/javascript">
+        var currentStart = 0;
+
+        /**
+            Load stuff on page load
+         */
+        $(document).ready(function() {
+            $('#customer_search_name').keyup(function(e) {
+                ShowCustomers(e);
+            });
+            $('#customer_search_phone').keyup(function(e) {
+                ShowCustomers(e);
+            });
+            $('#product_search_name').keyup(function(e) {
+                ShowProducts(e);
+            });
+            $('#product_search_id').keyup(function(e) {
+                ShowProducts(e);
+            });
+        });
+
+        /**
+            Functionf for selecting customer for our order.
+         */
+        function ShowCustomers(el) {
+            var name = $('#customer_search_name').val();
+            var phone = $('#customer_search_phone').val();
+        
+            $.ajax({
+                type: 'post',
+                data: {getcustomers: ' ', name: name, phone: phone},
+                url: "/php/ajax.php", 
+                success: function(result){
+                    $('#customers').html(result);
+                    $('#customers').show();
+            }});
+        };
+        function SelectCustomer(el) {
+            var id = $(el).attr('id'); 
+            
+            $.ajax({
+                type: 'post',
+                data: {selectcustomer: id},
+                url: "/php/ajax.php",
+                success: function(result){
+                    $('#customerinfo').html(result);
+                    $('#customerinfo').show();
+                    $('#customers').hide();
+            }});
+        };
+
+        function ConfirmCustomer(el) {
+            var id = $(el).attr('id'); 
+            
+            $.ajax({
+                type: 'post',
+                data: {confirmcustomer: id},
+                url: "/php/ajax.php",
+                success: function(result){
+                    $('#customers').hide();
+                    $('#customer_search').hide();
+                    $('#select').replaceWith("<label class='message error' OnClick='RemoveCustomer(this)' value='" + id + " id='remove'>Remove</label>");
+                    $('#orderinfo').show();
+                    $('#product_search').show();
+                    GetOrderInfo();
+            }});
+        };
+
+        function RemoveCustomer(el) {
+            var id = $(el).attr('value'); 
+            
+            $.ajax({
+                type: 'post', 
+                data: {removecustomer: id},
+                url: "/php/ajax.php",
+                success: function(result){
+                    $('#customerinfo').hide();
+                    $('#orderinfo').hide();
+                    $('#customer_search').show();
+                    $('#product_search').hide();
+            }});
+        };
+
+        function GetOrderInfo() {        
+            $.ajax({
+                type: 'post',
+                data: {getorderinfo: ' '},
+                url: "/php/ajax.php",
+                success: function(result){
+                    $('#orderinfo').html(result);
+            }});
+        };
+
+        function ShowProducts(el) {
+            var name = $('#product_search_name').val();
+            var id = $('#product_search_id').val();
+        
+            $.ajax({
+                type: 'post',
+                data: {getproducts: ' ', start: currentStart, end: currentStart+10, name: name, id: id},
+                url: "/php/ajax.php",
+                success: function(result){
+                    $('#products').html(result);
+                    $('#products').show();
+            }});
+        };
+
+        /**
+            Code needed for the switch between pages
+         */
+        function Next() {
+            var start = currentStart + 10;
+            var name = $('#product_search_name').val();
+            var id = $('#product_search_name').val();
+
+            $.ajax({
+                type: 'post',
+                data: {getproducts: ' ', start: start, end: start + 10, name: name, id: id},
+                url: "/php/ajax.php",
+                success: function(result){
+                    $('#products').html(result);
+                    currentStart = start;
+            }});
+        };
+
+        function Previous() {
+            if (!currentStart == 0) {
+                var start = currentStart - 10;
+                var name = $('#product_search_name').val();
+                var id = $('#product_search_name').val();
+
+                $.ajax({
+                    type: 'post', 
+                    data: {getproducts: ' ', start: start, end: start + 10, name: name, id: id},
+                    url: "/php/ajax.php",
+                    success: function(result){
+                        $('#products').html(result);
+                        currentStart = start;
+                }});
+            }
+        };
+    </script>
+         
+    </head>
+    <body>
+        <div id="main">
+            <header class="top">
+                <div class="logo">GATHER STUFF</div>
+                <div class="navcontainer">          
+                    <nav>
+                        <ul class="back">
+                            <a href="" title="Scroll to top">
+                                <li id="1">
+                                    <img src="img/arrow-up.png">
+                                </li>
+                            </a>
+                            <a href="index.html" title="Home">
+                                <li>
+                                    <img class="invert" src="img/dashboard-white.png">
+                                </li>
+                            </a>
+                            <a href="game.html" title="Stock">
+                                <li>
+                                    <img class="invert" src="img/profile-white.png">
+                                </li>
+                            </a>
+                            <a href="contact.html" title="Contact">
+                                <li>
+                                    <img class="invert" src="img/contact-white.png">
+                                </li>
+                            </a>
+                        </ul>
+                        <ul class="front">
+                            <a href="" title="Messages">
+                                <li>
+                                    <img src="img/mail.png">
+                                </li>
+                            </a>
+                            <a href="" title="Alerts">
+                                <li>
+                                    <img src="img/alert.png">
+                                </li>
+                            </a>
+                        </ul>
+                    </nav>
+                </div>                    
+                <ul class="menu">
+                    <div class="dropdown">
+                        <a href="index.html">
+                            <li><div class="profile-picture"></div><span>Classified</span></li>
+                        </a>
+                        <ul class="dropdown-content">
+                            <a href="index.html"><li><img src="img/logout.png"><span>Logout</span></li></a>
+                            <a href="index.html"><li><img src="img/settings.png"><span>Settings</span></li></a>
+                        </ul>
+                    </div>
+                </ul>
+            </header>
+            <div class="container-main"> 
+                <header class="hero">
+                    <ul class="items">           
+                        <a href="index.html">
+                            <li>
+                                <img src="img/dashboard-white.png">
+                                <span class="description">Dash&shy;board</span>
+                            </li>
+                        </a>
+                        <a href="index.html">
+                            <li>
+                                <img src="img/dashboard-white.png">
+                                <span class="description">Create Order</span>
+                            </li>
+                        </a>
+                        <a href="index.html">
+                            <li>
+                                <img src="img/dashboard-white.png">
+                                <span class="description">Stock</span>
+                            </li>
+                        </a>
+                        <a href="contact.html">
+                            <li>
+                                <img src="img/contact-white.png">
+                                <span class="description">Contact</span>
+                            </li>
+                        </a>
+                    </ul>
+                </header>
+                <div class="main">
+                    <div class="row">
+                        <div class="cont12 card">
+                            <header>
+                                <h4 class="title">Create Order</h4>
+                                <p class="description">Search for a customer or create a new one</p>
+                                <div class="row" id="customer_search">
+                                    <div class="cont7 card">
+                                        <input id='customer_search_name' class="cont12" type='text' placeholder="Customer Name"></input>
+                                    </div>
+                                    <div class="cont3 card">
+                                        <input id='customer_search_phone' class="cont12" type='text' placeholder="Phone Number"></input>
+                                    </div>
+                                    <div class="cont2">
+                                        <div class="message">Create New</div> <!-- TODO FIX THIS buLLSHIT SO IT LOOKS BETTER -->
+                                    </div>
+                                </div>
+                            </header>
+                            <div id='customers'></div>
+                            <div id='customerinfo'></div>
+                            <div id='customercharts' hidden></div>
+                            <div id='orderinfo' style="display: none;"></div>
+                            <div class="row" id="product_search" style="display: none;">
+                                <div class="cont11 card">
+                                    <input id='product_search_name' class="cont12" type='text' placeholder="Product Name"></input>
+                                </div>
+                                <div class="cont1 card">
+                                    <input id='product_search_id' class="cont12" type='text' placeholder="Product ID"></input>
+                                </div>
+                            </div>
+                            <div id='productinfo' style="display: none;"></div>
+                            <div id='products' style="display: none;"></div>
+                        </div>
+                    </div>
+                    <footer>
+                        <label>&#9400; 2017 by <a href="aboutus.html"><b>Classified</b></a> &amp; <a href="aboutus.html"><b>Yannick</b></a></label>
+                        <label><a href="sitemap.html"><img src="img/sitemap.png" alt="Sitemap"></a>&#10095; Sitemap</label>
+                        <label>
+                            <a href="index.html">Home</a>
+                            <span> - </span>
+                            <a href="stats.html">Stats</a>
+                            <span> - </span>
+                            <a href="contact.html">Contact</a>
+                            <span> - </span>
+                            <a href="game.html">Game</a>
+                            <span> - </span>
+                            <a href="aboutus.html">About</a>
+                        </label>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
