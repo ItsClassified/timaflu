@@ -82,7 +82,7 @@ function GetProductInfo($product_id) {
 
     $result = $db->prepare("SELECT 
                                 p.name AS name,
-                                s.stock AS stock,
+                                SUM(s.stock) AS stock,
                                 strength_quantity AS strength,
                                 su.unit AS sunit,
                                 parcel_size AS psize,
@@ -97,29 +97,26 @@ function GetProductInfo($product_id) {
                                 stock AS s ON s.product_id = p.id
                             WHERE
                                 s.current = 1 AND p.current = 1
-                                    AND p.id = $product_id");
+                                    AND p.id = $product_id GROUP BY s.product_id");
     $result->execute();
 
     $rows = $result->fetchAll(PDO::FETCH_ASSOC);
 
-    for ($i=0; $i < sizeof($rows); $i++) {
-        echo "<tr>";
-            echo "<td>" . $rows[$i]['name'] . "</td>";
-            echo "<td>" . $rows[$i]['stock'] . "</td>";
-            echo "<td>" . $rows[$i]['strength'] . ' ' . $rows[$i]['sunit'] . "</td>";
-            echo "<td>" . $rows[$i]['psize'] . "</td>";            
-            echo "<td>" . $rows[$i]['price'] . "</td>";            
-        echo "</tr>";
-    }
+    echo "<td>" . $rows[0]['name'] . "</td>";
+    echo "<td>" . $rows[0]['stock'] . "</td>";
+    echo "<td>" . $rows[0]['strength'] . ' ' . $rows[0]['sunit'] . "</td>";
+    echo "<td>" . $rows[0]['psize'] . "</td>";            
+    echo "<td id='product_price' value='" . $rows[0]['price'] . "'>" . $rows[0]['price'] . "</td>";            
 }
 
 
-function GetProducts($start, $end, $name, $id) {
+function GetProducts($start, $end, $name, $id, $ingredient) {
     $db = ConnectDatabase();
 
-    $result = $db->prepare("SELECT 
+    $result = $db->prepare("SELECT
+                                p.id AS productid,
                                 p.name AS name,
-                                s.stock AS stock,
+                                SUM(s.stock) AS stock,
                                 strength_quantity AS strength,
                                 su.unit AS sunit,
                                 parcel_size AS psize,
@@ -132,18 +129,22 @@ function GetProducts($start, $end, $name, $id) {
                                 strength_units AS su ON su.id = p.strength_unit
                                     INNER JOIN
                                 stock AS s ON s.product_id = p.id
+                                    INNER JOIN
+                                active_ingredients AS ai ON p.active_ingredient_id = ai.id
                             WHERE
                                 s.current = 1
                                 AND p.current = 1
+                                AND ai.name LIKE '%$ingredient%'
                                 AND p.name LIKE '%$name%'
                                 AND p.id LIKE '%$id%'
+                            GROUP BY s.product_id
                             ORDER BY p.id LIMIT $start,$end");
     $result->execute();
 
     $rows = $result->fetchAll(PDO::FETCH_ASSOC);
 
     for ($i=0; $i < sizeof($rows); $i++) {
-        echo "<tr>";
+        echo "<tr OnClick='SelectProduct(this)' value='" . $rows[$i]['productid'] . "'>";
             echo "<td>" . $rows[$i]['name'] . "</td>";
             echo "<td>" . $rows[$i]['stock'] . "</td>";
             echo "<td>" . $rows[$i]['strength'] . ' ' . $rows[$i]['sunit'] . "</td>";
@@ -151,6 +152,10 @@ function GetProducts($start, $end, $name, $id) {
             echo "<td>" . $rows[$i]['price'] . "</td>";   
         echo "</tr>";
     }
+}
+
+function AddItemToList($product_id, $amount) {
+
 }
 
 ////////////////////////////////////////////////////////////////////////////

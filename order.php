@@ -24,9 +24,10 @@ require('php/functions.php');
         <script src="js/charts.js"></script>
     <script type="text/javascript">
         var currentStart = 0;
+        var currentStartOrder = 0;
 
         /**
-            Load stuff on page load
+            Load stuff on page load 
          */
         $(document).ready(function() {
             $('#customer_search_name').keyup(function(e) {
@@ -41,10 +42,32 @@ require('php/functions.php');
             $('#product_search_id').keyup(function(e) {
                 ShowProducts(e);
             });
+            $('#product_search_ingredient').keyup(function(e) {
+                ShowProducts(e);
+            });
+
+
+            var customer = <?php if(isset($_SESSION['customer'])){ echo json_encode($_SESSION['customer']); } else { echo 'false'; } ?>;
+            if(customer) {
+                $.ajax({
+                type: 'post',
+                data: {selectcustomer: customer},
+                url: "/php/ajax.php",
+                success: function(result){
+                    $('#customerinfo').html(result);
+                    $('#customerinfo').show();
+                    $('#customers').hide();
+                    $('#customer_search').hide();
+                    $('#select').replaceWith("<label class='message error' OnClick='RemoveCustomer(this)' value='" + customer + " id='remove'>Remove</label>");
+                    $('#orderinfo').show();
+                    $('#product_search').show();
+                    GetOrderInfo();
+                }});
+            }
         });
 
         /**
-            Functionf for selecting customer for our order.
+            Functions for selecting customer for our order.
          */
         function ShowCustomers(el) {
             var name = $('#customer_search_name').val();
@@ -74,7 +97,7 @@ require('php/functions.php');
         };
 
         function ConfirmCustomer(el) {
-            var id = $(el).attr('id'); 
+            var id = $(el).attr('value'); 
             
             $.ajax({
                 type: 'post',
@@ -105,26 +128,63 @@ require('php/functions.php');
             }});
         };
 
+        /**
+            Functions for our order information
+         */
         function GetOrderInfo() {        
             $.ajax({
                 type: 'post',
-                data: {getorderinfo: ' '},
+                data: {getorderinfo: ' ', start: currentStartOrder},
                 url: "/php/ajax.php",
                 success: function(result){
                     $('#orderinfo').html(result);
             }});
         };
 
+        /**
+            Functions for the products
+         */
         function ShowProducts(el) {
             var name = $('#product_search_name').val();
             var id = $('#product_search_id').val();
+            var ingredient = $('#product_search_ingredient').val();
         
             $.ajax({
                 type: 'post',
-                data: {getproducts: ' ', start: currentStart, end: currentStart+10, name: name, id: id},
+                data: {getproducts: ' ', start: currentStart, end: currentStart+10, name: name, id: id, ingredient: ingredient},
                 url: "/php/ajax.php",
                 success: function(result){
                     $('#products').html(result);
+                    $('#products').show();
+            }});
+        };
+
+        function SelectProduct(el) {
+            var id = $(el).attr('value'); 
+        
+            $.ajax({
+                type: 'post',
+                data: {selectproduct: id},
+                url: "/php/ajax.php",
+                success: function(result){
+                    $('#productinfo').html(result);
+                    $('#productinfo').show();
+                    $('#products').hide();
+            }});
+        };
+
+        function ConfirmProduct(el) {
+            var id = $(el).attr('value'); 
+            var amount = $('#product_amount').val();
+            var price = $('#product_price').attr('value'); // TODO FIX SO IT DOESNT GETS THE PRICE OF ANOTHER ITEM
+
+            $.ajax({
+                type: 'post',
+                data: {confirmproduct: id, amount: amount, price: price},
+                url: "/php/ajax.php",
+                success: function(result){
+                    GetOrderInfo();
+                    $('#productinfo').hide();
                     $('#products').show();
             }});
         };
@@ -163,13 +223,41 @@ require('php/functions.php');
                 }});
             }
         };
+
+        function NextOrder() {
+            var start = currentStartOrder + 10;
+
+            $.ajax({
+                type: 'post',
+                data: {getorderinfo: ' ', start: start, end: start + 10},
+                url: "/php/ajax.php",
+                success: function(result){
+                    $('#orderinfo').html(result);
+                    currentStartOrder = start;
+            }});
+        };
+
+        function PreviousOrder() {
+            if (!currentStartOrder == 0) {
+                var start = currentStartOrder - 10;
+
+                $.ajax({
+                    type: 'post', 
+                    data: {getorderinfo: ' ', start: start, end: start + 10},
+                    url: "/php/ajax.php",
+                    success: function(result){
+                        $('#orderinfo').html(result);
+                        currentStartOrder = start;
+                }});
+            }
+        };
     </script>
          
     </head>
     <body>
         <div id="main">
             <header class="top">
-                <div class="logo">GATHER STUFF</div>
+                <div class="logo">TIMAFLU-ORDERS</div>
                 <div class="navcontainer">          
                     <nav>
                         <ul class="back">
@@ -272,8 +360,11 @@ require('php/functions.php');
                             <div id='customercharts' hidden></div>
                             <div id='orderinfo' style="display: none;"></div>
                             <div class="row" id="product_search" style="display: none;">
-                                <div class="cont11 card">
+                                <div class="cont10 card">
                                     <input id='product_search_name' class="cont12" type='text' placeholder="Product Name"></input>
+                                </div>
+                                <div class="cont1 card">
+                                    <input id='product_search_ingredient' class="cont12" type='text' placeholder="Active Ingredient"></input>
                                 </div>
                                 <div class="cont1 card">
                                     <input id='product_search_id' class="cont12" type='text' placeholder="Product ID"></input>
