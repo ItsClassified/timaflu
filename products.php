@@ -187,7 +187,7 @@ require('php/functions.php');
                         </div>
                     </div>
                     <footer>
-                        <label>&#9400; 2017 by <a href="aboutus.html"><b>Classified</b></a> &amp; <a href="aboutus.html"><b>Yannick</b></a></label>
+                        <label>&#9400; 2017 | version 1.0 beta 6</label>
                         <label><a href="sitemap.html"><img src="img/sitemap.png" alt="Sitemap"></a>&#10095; Sitemap</label>
                         <label>
                             <a href="index.html">Home</a>
