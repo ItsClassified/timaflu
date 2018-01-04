@@ -258,44 +258,6 @@ require('php/functions.php');
         <div id="main">
             <header class="top">
                 <div class="logo">TIMAFLU-ORDERS</div>
-                <div class="navcontainer">          
-                    <nav>
-                        <ul class="back">
-                            <a href="" title="Scroll to top">
-                                <li id="1">
-                                    <img src="img/arrow-up.png">
-                                </li>
-                            </a>
-                            <a href="index.html" title="Home">
-                                <li>
-                                    <img class="invert" src="img/dashboard-white.png">
-                                </li>
-                            </a>
-                            <a href="game.html" title="Stock">
-                                <li>
-                                    <img class="invert" src="img/profile-white.png">
-                                </li>
-                            </a>
-                            <a href="contact.html" title="Contact">
-                                <li>
-                                    <img class="invert" src="img/contact-white.png">
-                                </li>
-                            </a>
-                        </ul>
-                        <ul class="front">
-                            <a href="" title="Messages">
-                                <li>
-                                    <img src="img/mail.png">
-                                </li>
-                            </a>
-                            <a href="" title="Alerts">
-                                <li>
-                                    <img src="img/alert.png">
-                                </li>
-                            </a>
-                        </ul>
-                    </nav>
-                </div>                    
                 <ul class="menu">
                     <div class="dropdown">
                         <a href="index.html">

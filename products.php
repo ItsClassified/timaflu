@@ -98,59 +98,6 @@ require('php/functions.php');
         <div id="main">
             <header class="top">
                 <div class="logo">GATHER STUFF</div>
-                <div class="navcontainer">          
-                    <nav>
-                        <ul class="back">
-                            <a href="" title="Scroll to top">
-                                <li id="1">
-                                    <img src="img/arrow-up.png">
-                                </li>
-                            </a>
-                            <a href="index.html" title="Home">
-                                <li>
-                                    <img class="invert" src="img/dashboard-white.png">
-                                </li>
-                            </a>
-                            <a href="game.html" title="Your Game">
-                                <li>
-                                    <img class="invert" src="img/profile-white.png">
-                                </li>
-                            </a>
-                            <a href="stats.html" title="Statistics">
-                                <li>
-                                    <img class="invert" src="img/stats-white.png">
-                                </li>
-                            </a>
-                            <a href="leaderboards.html" title="Leaderboards">
-                                <li>
-                                    <img class="invert" src="img/leaderboards-white.png">
-                                </li>
-                            </a>
-                            <a href="creatematch.html" title="Create a Match">
-                                <li>
-                                    <img class="invert" src="img/dashboard-white.png">
-                                </li>
-                            </a>
-                            <a href="contact.html" title="Contact">
-                                <li>
-                                    <img class="invert" src="img/contact-white.png">
-                                </li>
-                            </a>
-                        </ul>
-                        <ul class="front">
-                            <a href="" title="Messages">
-                                <li>
-                                    <img src="img/mail.png">
-                                </li>
-                            </a>
-                            <a href="" title="Alerts">
-                                <li>
-                                    <img src="img/alert.png">
-                                </li>
-                            </a>
-                        </ul>
-                    </nav>
-                </div>                    
                 <ul class="menu">
                     <div class="dropdown"><!-- Needed for dropdown-content, so when hovering over it it keeps displaying -->
                         <a href="index.html">
