@@ -5,10 +5,18 @@ header.top .logo{
     min-width: 180px; 
     padding: 20px;
     font-size: 1.5em;
+    vertical-align: middle;
+    font-weight: bold;
 }
 
 /******** FOR THE NAVIGATION (CENTER) ********/
 
+header.top .title{
+    text-align: center;
+    min-width: 180px; 
+    padding: 15px;
+    font-size: 1em;
+    vertical-align: middle;
 }
 
 /******** FOR THE MENU (RIGHT) ********/
