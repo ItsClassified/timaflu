@@ -4,7 +4,7 @@ require('php/functions.php');
 ?>
 <html lang="en">
     <head>
-        <title>Gatherstuff - Sitemap</title>
+        <title>Timaflu - Products</title>
         <link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>
         <link rel="stylesheet" type="text/css" href="css/top.css"/>
         <link rel="stylesheet" type="text/css" href="css/form.css" />
