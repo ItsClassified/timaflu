@@ -163,26 +163,37 @@ require('php/functions.php');
                     <ul class="items">           
                         <a href="index.html">
                             <li>
+                                <div class="notify"><div class="blinker green"></div></div>
                                 <img src="img/dashboard-white.png">
                                 <span class="description">Dash&shy;board</span>
                             </li>
                         </a>
-                        <a href="index.html">
+                        <a href="order.php">
                             <li>
-                                <img src="img/dashboard-white.png">
+                                <div class="notify"><div class="blinker green"></div></div>
+                                <img src="img/neworder.png">
                                 <span class="description">Create Order</span>
                             </li>
                         </a>
-                        <a href="index.html">
+                        <a href="stock.php">
                             <li>
-                                <img src="img/dashboard-white.png">
+                                <div class="notify"><div class="blinker red"></div></div>
+                                <img src="img/stock.png">
                                 <span class="description">Stock</span>
                             </li>
                         </a>
-                        <a href="contact.html">
+                        <a href="billing.php">
                             <li>
-                                <img src="img/contact-white.png">
-                                <span class="description">Contact</span>
+                                <div class="notify"><div class="blinker orange"></div></div>
+                                <img src="img/invoice.png">
+                                <span class="description">Billing</span>
+                            </li>
+                        </a>
+                        <a href="distribution.php">
+                            <li>
+                                <div class="notify"><div class="blinker red"></div></div>
+                                <img src="img/distr.png">
+                                <span class="description">Distribution</span>
                             </li>
                         </a>
                     </ul>
