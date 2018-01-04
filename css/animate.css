@@ -45,3 +45,6 @@
   animation-name: slideOutDown;
 }
 
+@keyframes blinker {  
+  50% { opacity: 0; }
+}

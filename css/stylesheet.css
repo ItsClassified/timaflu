@@ -130,6 +130,32 @@ header.hero ul.items .description{
     color: white;
 }
 
+header.hero ul.items .notify{
+    display: flex;
+    height: 6px;
+    justify-content: center;
+}
+
+header.hero ul.items .blinker{
+    border-radius: 3px;
+    width: 6px;
+    height: 6px;
+    position: absolute;
+}
+
+header.hero ul.items .blinker.green{
+    background-color: #00e500;
+}
+
+header.hero ul.items .blinker.red{
+    background-color: red;
+    animation: blinker 1s linear infinite;
+}
+
+header.hero ul.items .blinker.orange{
+    background-color: #ff7600;
+}
+
 /******** MAIN CONTAINER OF THE WEBSITE ********/
 .main{
     /*transform: translate3d(-110%, 0, 0);*/
