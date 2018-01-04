@@ -58,7 +58,7 @@ header.top ul.menu a, a:visited{
 
 header.top ul.menu a:hover li{
     color: #FFF;
-    background-color: rgba(132, 210, 246, 0.75);
+    background-color: rgba(223, 32, 43, 0.75);
 }
 
 header.top ul.menu .dropdown{
@@ -68,7 +68,7 @@ header.top ul.menu .dropdown{
 
 header.top ul.menu .dropdown:hover > a li{ /* To keep the menu li look selected (Username), used > selector so the li's in the .dropdown-content ul won't look hovered */
     color: #FFF;
-    background-color: rgba(132, 210, 246, 0.75);
+    background-color: rgba(223, 32, 43, 0.75);
 }
 
 header.top ul.menu .dropdown ul.dropdown-content{
