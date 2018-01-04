@@ -97,11 +97,12 @@ require('php/functions.php');
     <body>
         <div id="main">
             <header class="top">
-                <div class="logo">GATHER STUFF</div>
+                <div class="logo">TIMAFLU</div>  
+                <div class="title">January 4th, 2018</div>
                 <ul class="menu">
                     <div class="dropdown"><!-- Needed for dropdown-content, so when hovering over it it keeps displaying -->
                         <a href="index.html">
-                            <li><div class="profile-picture"></div><span>Classified</span></li>
+                            <li><div class="profile-picture"></div><span>dr. B. Onderstal</span></li>
                         </a>
                         <ul class="dropdown-content">
                             <a href="index.html"><li><img src="img/logout.png"><span>Logout</span></li></a>
