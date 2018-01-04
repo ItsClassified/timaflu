@@ -9,54 +9,6 @@ header.top .logo{
 
 /******** FOR THE NAVIGATION (CENTER) ********/
 
-header.top .navcontainer{
-    flex-grow: 1; /* Changes it's size dynamically based on available space left in .alerts */
-    overflow: hidden; /* So the nav items above the top (ul.back) won't show when not needed */
-}
-
-header.top .navcontainer nav{
-    height: 140px;
-    margin: -70px 0 0; /* Change navbar position 70px over top and remove default list margin */
-    transform-style: preserve-3d;
-    transition: all 0.15s linear;
-}
-
-header.top .navcontainer nav ul{
-    list-style: none; /* Remove default list dots */
-    padding: 0; /* Remove default list padding */
-    margin: 0; /* Remove default list margin */
-    width: auto;
-    height: 70px;
-    font-size: 1.5em;
-    display: flex;
-    overflow: hidden; /* Third li has <a> outside of container (??) */
-}
-
-header.top .navcontainer nav ul li{
-    width: 30px;
-    height: 30px;
-    padding: 20px;
-}
-
-header.top .navcontainer nav ul li img{
-    width: 30px;
-    height: 30px;
-}
-
-header.top .navcontainer nav ul.back li img{ /* Rotate backface ul images so theyre not upside down */
-    transform: rotateX(180deg);
-}
-
-header.top .navcontainer nav ul a:hover{
-    background-color: rgba(132, 210, 246, 0.75);
-}
-
-header.top .navcontainer nav ul a:hover img{
-    filter: invert(100%);
-}
-
-header.top .navcontainer nav ul a:hover img.invert{
-    filter: invert(0%); /* un-invert (white) image if it's already inverted */
 }
 
 /******** FOR THE MENU (RIGHT) ********/
