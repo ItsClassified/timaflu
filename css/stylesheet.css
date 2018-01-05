@@ -433,7 +433,7 @@ table.stats{
 }
 table.stats tr:nth-of-type(even) {
     background-color:#FFFFFF;
-  }
+}
 table.stats td{
     border-top: 1px solid #ddd;
     padding: 12px 20px;
@@ -444,6 +444,35 @@ table.stats tr:hover{
 table.stats th{
     padding-left: 20px;
     text-align: left;
+}
+
+table.stats td .switcher{
+    display: inline-block;
+    max-width: 100%;
+    border-radius: 9999px;
+    overflow: hidden;
+    color: white;
+    padding: 2px 4px;
+}
+table.stats td .switcher.red{
+    background-color: red;
+}
+table.stats td .switcher.orange{
+    background-color: darkorange;
+}
+table.stats td .switcher.green{
+    background-color: green;
+}
+table.stats td .switcher.grey{
+    background-color: darkgrey;
+}
+table.stats td .switcher.white{
+    background-color: white;
+    color: black;
+}
+
+table.stats td .switcher span{
+    animation: head 1s linear infinite;
 }
 
 /******* PROFILE *******/
