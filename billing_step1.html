@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<?php
+require('php/functions.php');
+?>
+<html lang="en">
+    <head>
+        <title>Timaflu - Billing</title>
+        <link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>
+        <link rel="stylesheet" type="text/css" href="css/top.css"/>
+        <link rel="stylesheet" type="text/css" href="css/form.css" />
+        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/message.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <!-- <link href="css/stylesheet.css" rel="stylesheet" type="text/css"> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/charts.js"></script>
+    </head>
+    <body>
+        <div id="main">
+            <header class="top">
+                <div class="logo">TIMAFLU</div>
+                <div class="title">January 4th, 2018</div>
+                <ul class="menu">
+                    <div class="dropdown"><!-- Needed for dropdown-content, so when hovering over it it keeps displaying -->
+                        <a href="index.html">
+                            <li><div class="profile-picture"></div><span>dr. B. Onderstal</span></li>
+                        </a>
+                        <ul class="dropdown-content">
+                            <a href="index.html"><li><img src="img/logout.png"><span>Logout</span></li></a>
+                            <a href="index.html"><li><img src="img/settings.png"><span>Settings</span></li></a>
+                        </ul>
+                    </div>
+                </ul>
+            </header>
+            <div class="container-main"> 
+                <header class="hero">
+                    <ul class="items">           
+                        <a href="index.html">
+                            <li>
+                                <div class="notify"><div class="blinker green"></div></div>
+                                <img src="img/dashboard-white.png">
+                                <span class="description">Dash&shy;board</span>
+                            </li>
+                        </a>
+                        <a href="order.php">
+                            <li>
+                                <div class="notify"><div class="blinker green"></div></div>
+                                <img src="img/neworder.png">
+                                <span class="description">Create Order</span>
+                            </li>
+                        </a>
+                        <a href="stock.php">
+                            <li>
+                                <div class="notify"><div class="blinker red"></div></div>
+                                <img src="img/stock.png">
+                                <span class="description">Stock</span>
+                            </li>
+                        </a>
+                        <a href="billing.php">
+                            <li>
+                                <div class="notify"><div class="blinker orange"></div></div>
+                                <img src="img/invoice.png">
+                                <span class="description">Billing</span>
+                            </li>
+                        </a>
+                        <a href="distribution.php">
+                            <li>
+                                <div class="notify"><div class="blinker red"></div></div>
+                                <img src="img/distr.png">
+                                <span class="description">Distribution</span>
+                            </li>
+                        </a>
+                    </ul>
+                </header>
+                <div class="main">
+                    <div class="row">
+                        <div class="cont9 card">
+                            <header>
+                                <h4 class="title">Order Display</h4>
+                                <p class="description">Select an order to create a new invoice</p>
+                                <div class="row">
+                                    <div class="cont12 card right content">
+                                        <input id='stock_search' class='cont12' type='text'></input>
+                                    </div>
+                                </div>
+                            </header>
+                            <table class="stats">
+                                <col style="width:10%">
+                                <col style="width:40%">
+                                <col style="width:20%">
+                                <col style="width:30%">
+                                <tbody>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Costumer name</th>
+                                        <th>Order completed for</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    <tr>
+                                        <td>7563548</td>
+                                        <td>Buurtapotheek Albergen</td>
+                                        <td><div class="switcher red">16 days</div></td>
+                                        <td><div class="switcher orange">invoiced <div class="switcher white">2&#215;</div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3245785</td>
+                                        <td>Apotheek De Poldervaart</td>
+                                        <td>2 days</td>
+                                        <td><div class="switcher green">billable <div class="switcher white">&#8364; 4537,78</div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8272348</td>
+                                        <td>Alphega Apotheek Cleij</td>
+                                        <td>-</td>
+                                        <td><div class="switcher grey">awaits completion <div class="switcher white">489 min</div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8793645</td>
+                                        <td>SAL Apotheek Brandevoort</td>
+                                        <td>1 day</td>
+                                        <td><div class="switcher green">billable <div class="switcher white">&#8364; 5463,78</div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6152374</td>
+                                        <td>Buurtapotheek Albergen</td>
+                                        <td>just now</td>
+                                        <td><div class="switcher green">billable <div class="switcher white">&#8364; 3254,57</div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2934904</td>
+                                        <td>Alphega Apotheek De Betuwe</td>
+                                        <td>-</td>
+                                        <td><div class="switcher grey">awaits completion <div class="switcher white">12 min</div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3765344</td>
+                                        <td>Buurtapotheek Albergen</td>
+                                        <td>-</td>
+                                        <td><div class="switcher grey">awaits completion <div class="switcher white">83 min</div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8675476</td>
+                                        <td>Alphega Apotheek De Betuwe</td>
+                                        <td>-</td>
+                                        <td><div class="switcher grey">awaits completion <div class="switcher white">156 min</div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8476586</td>
+                                        <td>SAL Apotheek Brandevoort</td>
+                                        <td>-</td>
+                                        <td><div class="switcher grey">awaits completion <div class="switcher white">54 min</div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1263535</td>
+                                        <td>Apotheek De Poldervaart</td>
+                                        <td><div class="switcher orange">6 days</div></td>
+                                        <td><div class="switcher green">billable <div class="switcher white">&#8364; 7238,64</div></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <footer>
+                                <label>Previous</label>
+                                <label><b>1</b> 2</label>
+                                <label>Next</label>
+                            </footer>
+                        </div>
+                        <div class="cont3 card">
+                            <header>
+                                <h4 class="title">Outstanding amounts</h4>
+                                <p class="description">Select a costumer to view invoices</p>
+                                <div class="row">
+                                    <div class="cont12 card right content">
+                                        <input id='stock_search' class='cont12' type='text'></input>
+                                    </div>
+                                </div>
+                            </header>
+                            <table class="stats">
+                                <col style="width:57%">
+                                <col style="width:43%">
+                                <tbody>
+                                    <tr>
+                                        <th>Costumer name</th>
+                                        <th>Awaiting</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Alphega Apotheek De Betuwe</td>
+                                        <td><div class="switcher red"><span>&#8364; 723,83</span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>SAL Apotheek Brandevoort</td>
+                                        <td><div class="switcher red"><span>&#8364; 2734,22</span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>BENU Apotheek Ghen heij</td>
+                                        <td><div class="switcher red"><span>&#8364; 6743,90</span></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <footer>
+                                <label>Previous</label>
+                                <label><b>1</b></label>
+                                <label>Next</label>
+                            </footer>
+                        </div>
+                    </div>
+                    <footer>
+                        <label>&#9400; 2017 | version 1.0 beta 6</label>
+                        <label><a href="sitemap.html"><img src="img/sitemap.png" alt="Sitemap"></a>&#10095; Sitemap</label>
+                        <label>
+                            <a href="index.html">Home</a>
+                            <span> - </span>
+                            <a href="stats.html">Stats</a>
+                            <span> - </span>
+                            <a href="contact.html">Contact</a>
+                            <span> - </span>
+                            <a href="game.html">Game</a>
+                            <span> - </span>
+                            <a href="aboutus.html">About</a>
+                        </label>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
