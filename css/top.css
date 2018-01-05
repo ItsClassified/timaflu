@@ -44,11 +44,12 @@ header.top ul.menu li span{
 
 header.top ul.menu li .profile-picture{
     border-radius: 50%;
-    width: 48px;
-    height: 48px;
+    border: 0.5px solid #838383;
+    width: 47px;
+    height: 47px;
     vertical-align: middle; /* So it's aligned with the description span */
     display: inline-block;
-    background: #ffffff url("../img/astronaut.jpg") no-repeat center;
+    background: #ffffff url("../img/berdan.jpg") no-repeat center;
     background-size: cover;
 }
 
