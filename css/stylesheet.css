@@ -156,6 +156,11 @@ header.hero ul.items .blinker.orange{
     background-color: #ff7600;
 }
 
+header.hero .step progress{
+    display: block;
+    margin: 0 auto;
+}
+
 /******** MAIN CONTAINER OF THE WEBSITE ********/
 .main{
     /*transform: translate3d(-110%, 0, 0);*/
@@ -474,6 +479,32 @@ table.stats td .switcher.white{
 table.stats td .switcher span{
     animation: head 1s linear infinite;
 }
+
+table.products a {
+    text-decoration: none;
+    color: #59A5D8;
+}
+table.products{
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: #f9f9f9;
+}
+table.products tr:nth-of-type(even) {
+    background-color:#FFFFFF;
+}
+table.products td{
+    border-top: 1px solid #ddd;
+    padding: 6px 8px;
+}
+table.products tr:hover{
+    background-color: #F0F0F0;
+}
+table.products th{
+    padding-left: 8px;
+    text-align: left;
+}
+
 
 /******* PROFILE *******/
 .card .image {
