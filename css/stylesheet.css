@@ -348,7 +348,7 @@ table.stats td .switcher.white{
     color: black;
 }
 
-table.stats td .switcher span{
+table.stats td .switcher span.blinker{
     animation: head 1s linear infinite;
 }
 
