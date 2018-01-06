@@ -199,143 +199,12 @@ footer label img{
     width: auto;
 }
 
-/******** CONTAINER ADDITIONS ********/
-.profile{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.profile img.profile{
-    background-color: #EEE;
-    margin-top: -20px;
-    margin-left: -20px;
-    width: 120%;;
-    height: 150px;
-    display: flex;
-}
-
-.profile .picture{
-    overflow: hidden;
-    border-radius: 10px;
-    margin-top: -10%;
-    width: 150px;
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    
-}
-
 /******** ROWS ********/
 .row{
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: stretch;
-}
-
-/******** FOR game.html MAPS ********/
-
-figure.map figcaption.gradient{
-    background: rgba(0,0,0,0);
-    background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(100%, rgba(0,0,0,1)));
-    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
-    background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
-    background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
-}
-
-figure.map figcaption{
-    color: #fff;
-    text-shadow: 0px 0px 6px rgb(0, 0, 0);
-    font-size: 2.5em;
-    width: 100%;
-    height: 25%;
-    position: absolute;
-    bottom: 0;
-    padding: 3% 16px;
-    box-sizing: border-box;
-    transition: all 0.6s;
-}
-
-figure.map{
-    position: relative;
-    height: 350px;
-    overflow: hidden;
-}
-
-figure.map:hover figcaption{
-    bottom: -25%;
-}
-
-figure.map:hover img{
-    transform: scale(1.2);
-}
-
-figure.map img{
-    object-fit: cover;
-    min-width: 100%;
-    height: 100%;
-    transition: all 0.6s;
-}
-
-ul.gallery{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-ul.gallery li{
-    position: relative;
-    display: block;
-    min-width: 200px;
-    width: calc(20% - 40px); /* Adjust for the .card margin */
-    box-sizing: border-box;
-    overflow: hidden;
-    height: 200px;
-    max-height: 220px;
-}
-
-ul.gallery li:hover figcaption{
-    top: 25%;
-    background-color: #59A5D8;
-}
-
-ul.gallery li:hover img{
-    transform: scale(0.8);
-}
-
-ul.gallery li img{
-    object-fit: contain;
-    min-height: 200px;
-    max-height: 200px;
-    max-width: 100%;
-    transition: all .8s;
-}
-
-ul.gallery li figcaption{
-    position: absolute;
-    top: 80%;
-    color: #fff;
-    background-color: rgb(89, 165, 216);
-    width: 100%;
-    max-width: 100%;
-    height: 100%;
-    max-height: 100%;
-    transition: all .8s;
-    padding: 14px;
-    box-sizing: border-box;
-}
-
-ul.gallery li figcaption header{
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
 }
 
 /******** CONTAINERS ********/
@@ -423,6 +292,9 @@ ul.gallery li figcaption header{
     transition: 1s;
     width: 100%;
     overflow: hidden;
+}
+img.gauge{
+    width: 100%;
 }
 
 /******** TABLES ********/
@@ -558,96 +430,6 @@ table.products th{
     color: grey;
 }
 
-
-/****** THIS IS FOR GATHERSTUFF / CREATING MATCHES *****/
-/***** Main Containers *****/
-
-/* Container for T */
-.t-container{
-    background-color: #FDFDFD;
-    padding: 0;
-    margin: 1%;
-    float: left;
-    width: 25%;
-    display: flex;
-    flex-direction:column;
-    margin-bottom: 0px;
-    z-index: 1;
-}
-
-/* Container for the mid items */
-.mid-container{
-    float: left;
-    width: 44%;
-    margin: 1%;
-}
-/***** Smaller containers that go inside main containers *****/
-.t-container .t{
-    margin-bottom: 25px;
-    overflow: hidden;
-    background-color: #ffffff;
-    box-shadow: 0px 0px 3px 1px #ccc;
-    width: 100%;
-    height: 175px;
-    box-sizing: border-box;
-}
-
-.mid-container .stats{
-    padding: 2%;
-    overflow: hidden;
-    background-color: #ffffff;
-    box-shadow: 0px 0px 3px 1px #ccc;
-    width: 100%;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-}
-
-.mid-container .status{
-    padding: 2%;
-    overflow: hidden;
-    background-color: #ffffff;
-    box-shadow: 0px 0px 3px 1px #ccc;
-    width: 100%;
-    
-    box-sizing: border-box;
-}
-
-/***** CSS for items inside the containers *****/
-.t-container .image {
-    background: #000000 url("../img/banner5.png") no-repeat center bottom;
-    background-size: cover;
-    height: 43%;
-}
-
-.t-container .profile-picture{
-    background: #ffffff url("../img/astronaut.jpg") no-repeat center;
-    position: relative; /* So it's above .image and .content */
-    background-size: cover;
-    height: 110px;
-    width: 110px;
-    margin: -58px auto; /* -58px because border-top and border-bottom are both 3px (=6px)*/
-    border-radius: 50%;
-    border: 3px solid #EEE;
-    transition: 0.5s;
-}
-
-/*.profile-picture:hover{
-    transform: scale(1.2);
-    margin-bottom: -30px; /* Make some space... 
-}*/
-
-.t-container .content{
-    height: 70%;
-    max-height: 400px;
-    padding: 60px 25px 25px;
-}
-
-.t-container .username{
-    display: flex;
-    justify-content: center;
-    font-size: 1.5em;
-}
-
 @media screen and (max-width: 1024px) {
 
     .main{
@@ -668,13 +450,6 @@ table.products th{
     
     figure.map{
         border: thin solid #000;
-    }  
-    
-    .container-main{
-        position: absolute;
-        margin-left: 70px;
-        width: calc(100% - 70px);
-        transition: all .5s;
     }
     
     .cont1,
