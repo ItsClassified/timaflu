@@ -187,6 +187,7 @@ footer{
     padding: 8px 20px;
     align-items: center;
     border-top: thin solid #dedede;
+    border-bottom: thin solid #dedede;
 }
 
 footer label{
@@ -312,9 +313,10 @@ table.stats a {
 }
 table.stats{
     border-collapse: collapse;
-    margin-bottom: 10px;
+/*    margin-bottom: 10px;*/
     width: 100%;
     background-color: #f9f9f9;
+    border-top: thin solid #dedede;
 }
 table.stats tr:nth-of-type(even) {
     background-color:#FFFFFF;
