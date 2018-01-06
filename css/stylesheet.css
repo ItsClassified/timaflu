@@ -156,6 +156,10 @@ header.hero ul.items .blinker.orange{
     background-color: #ff7600;
 }
 
+header.hero .step button{
+    display: block;
+    margin: 0 auto;
+}
 header.hero .step progress{
     display: block;
     margin: 0 auto;
@@ -296,6 +300,10 @@ footer label img{
 img.gauge{
     width: 100%;
 }
+button{
+    margin: 0 auto;
+    display: block; 
+}
 
 /******** TABLES ********/
 table.stats a {
@@ -350,6 +358,9 @@ table.stats td .switcher.white{
 
 table.stats td .switcher span.blinker{
     animation: head 1s linear infinite;
+}
+table.stats td .switcher span.blinker.fast{
+    animation-duration: 0.5s;
 }
 
 table.products a {

@@ -39,6 +39,7 @@ require('php/functions.php');
                 <header class="hero">
                     <div class="step">
                         <progress>Unknown</progress>
+                        <button type="button" formaction="billing_step1.html">Cancel invoice</button>
                     </div>
                 </header>
                 <div class="main">
@@ -57,34 +58,36 @@ require('php/functions.php');
                                 <tbody>
                                     <tr>
                                         <th></th>
-                                        <th>Product</th>
-                                        <th>Qt.</th>
-                                        <th>Price/p</th>
-                                        <th>Total</th>
+                                        <th><span>Product</span></th>
+                                        <th><span>Qt.</span></th>
+                                        <th><span>Price/p</span></th>
+                                        <th><span>Total</span></th>
                                     </tr>
                                     <tr>
                                         <td><input checked type="checkbox"></td>
-                                        <td>Selokeen<sup>&#174;</sup> ZOC 50 (47,5 mg)</td>
-                                        <td>150</td>
+                                        <td><span>Selokeen<sup>&#174;</sup> ZOC 50 (47,5 mg)</span></td>
+                                        <td><span>150</span></td>
                                         <td><span>&#8364; 5,60</span></td>
                                         <td><span>&#8364; 840,00</span></td>
                                     </tr>
                                     <tr>
                                         <td><input type="checkbox"></td>
-                                        <td>MAXALT<sup>&#174;</sup> smelt (10 mg) (grootverp. 50st.)</td>
-                                        <td>5</td>
+                                        <td><span>MAXALT<sup>&#174;</sup> smelt (10 mg) (grootverp. 50st.)</span></td>
+                                        <td><span>5</span></td>
                                         <td><span>&#8364; 1219,33</span></td>
                                         <td><span>&#8364; 6096,65</span></td>
                                     </tr>
                                     <tr>
                                         <td><input checked type="checkbox"></td>
-                                        <td>Medikinet CR<sup>&#174;</sup> (30 mg) (grootverp. 50st.)</td>
-                                        <td>3</td>
+                                        <td><span>Medikinet CR<sup>&#174;</sup> (30 mg) (grootverp. 50st.)</span></td>
+                                        <td><span>3</span></td>
                                         <td><span>&#8364; 65,55</span></td>
                                         <td><span>&#8364; 196,65</span></td>
                                     </tr>
                                 </tbody>
                             </table>
+                            <button type="button">Create invoice</button>
+                            <label>Notice: selected items will be marked as invoiced.</label>
                         </div>
                         <div class="cont7 card">
                             <header>
