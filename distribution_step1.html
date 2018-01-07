@@ -17,6 +17,7 @@ require('php/functions.php');
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script src="js/main.js"></script>
         <script src="js/charts.js"></script>
+        <script src="js/sorttable.js"></script>
     </head>
     <body>
         <div id="main">
@@ -78,7 +79,52 @@ require('php/functions.php');
                 <div class="main">
                     <div class="row">
                         <div class="cont4 card">
-                            k
+                            <header>
+                                <h4 class="title">Robot status</h4>
+                                <p class="description">Select a robot to view history</p>
+                            </header>
+                            <table class="stats sortable">
+                                <col style="width:25%">
+                                <col style="width:75%">
+                                <tbody>
+                                    <tr>
+                                        <th><span>Robot ID</span></th>
+                                        <th><span>Status</span></th>
+                                    </tr>
+                                    <tr>
+                                        <td><span>1</span></td>
+                                        <td><div class="switcher green"><span>idle</span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>2</span></td>
+                                        <td><div class="switcher red"><span class="blinker fast">error </span><div class="switcher white"><span>path blocked</span></div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>3</span></td>
+                                        <td><div class="switcher grey"><span class="blinker">collecting </span><div class="switcher white"><span>order XXXXX</span></div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>4</span></td>
+                                        <td><div class="switcher green"><span>idle</span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>5</span></td>
+                                        <td><div class="switcher green"><span>idle</span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>6</span></td>
+                                        <td><div class="switcher grey"><span class="blinker">collecting </span><div class="switcher white"><span>order XXXXX</span></div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>7</span></td>
+                                        <td><div class="switcher grey"><span class="blinker">collecting </span><div class="switcher white"><span>order XXXXX</span></div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>8</span></td>
+                                        <td><div class="switcher green"><span>idle</span></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <div class="cont4 card">
                             <img class="gauge" src="img/gauge.png">
@@ -98,7 +144,7 @@ require('php/functions.php');
                                     </div>
                                 </div>
                             </header>
-                            <table class="stats">
+                            <table class="stats sortable">
                                 <col style="width:30%">
                                 <col style="width:70%">
                                 <tbody>
@@ -132,7 +178,7 @@ require('php/functions.php');
                                     </div>
                                 </div>
                             </header>
-                            <table class="stats">
+                            <table class="stats sortable">
                                 <col style="width:10%">
                                 <col style="width:28%">
                                 <col style="width:20%">
