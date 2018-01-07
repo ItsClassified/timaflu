@@ -377,6 +377,7 @@ table.products{
     margin-bottom: 10px;
     width: 100%;
     background-color: #f9f9f9;
+    border-top: thin solid #dedede;
 }
 table.products thead tr{
     height: 35px;
