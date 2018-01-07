@@ -302,7 +302,10 @@ footer label img{
     overflow: hidden;
 }
 img.gauge{
-    width: 100%;
+    display: block;
+    width: auto;
+    max-height: 500px;
+    margin: 0 auto;
 }
 button{
     margin: 0 auto;
