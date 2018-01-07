@@ -17,6 +17,7 @@ require('php/functions.php');
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script src="js/main.js"></script>
         <script src="js/charts.js"></script>
+        <script src="js/sorttable.js"></script>
     </head>
     <body>
         <div id="main">
@@ -55,7 +56,7 @@ require('php/functions.php');
                                 <col style="width:8%">
                                 <col style="width:15%">
                                 <col style="width:15%">
-                                <tbody>
+                                <thead>
                                     <tr>
                                         <th></th>
                                         <th><span>Product</span></th>
@@ -63,6 +64,8 @@ require('php/functions.php');
                                         <th><span>Price/p</span></th>
                                         <th><span>Total</span></th>
                                     </tr>
+                                </thead>
+                                <tbody>
                                     <tr>
                                         <td><input checked type="checkbox"></td>
                                         <td><span>Selokeen<sup>&#174;</sup> ZOC 50 (47,5 mg)</span></td>

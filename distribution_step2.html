@@ -17,6 +17,7 @@ require('php/functions.php');
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script src="js/main.js"></script>
         <script src="js/charts.js"></script>
+        <script src="js/sorttable.js"></script>
     </head>
     <body>
         <div id="main">
@@ -101,11 +102,13 @@ require('php/functions.php');
                             <table class="stats">
                                 <col style="width:30%">
                                 <col style="width:70%">
-                                <tbody>
+                                <thead>
                                     <tr>
                                         <th><span>Order ID</span></th>
                                         <th><span>Pack before</span></th>
                                     </tr>
+                                </thead>
+                                <tbody>
                                     <tr>
                                         <td><span>6152374</span></td>
                                         <td><div class="switcher grey"><span>&#9200; 1480 min </span><div class="switcher white"><span>tomorrow 16:00</span></div></div></td>
@@ -145,7 +148,7 @@ require('php/functions.php');
                                 <col style="width:20%">
                                 <col style="width:22%">
                                 <col style="width:20%">
-                                <tbody>
+                                <thead>
                                     <tr>
                                         <th>Order ID</th>
                                         <th>Costumer name</th>
@@ -153,6 +156,8 @@ require('php/functions.php');
                                         <th>Status</th>
                                         <th>First invoiced</th>
                                     </tr>
+                                </thead>
+                                <tbody>
                                     <tr>
                                         <td>7563548</td>
                                         <td>Buurtapotheek Albergen</td>

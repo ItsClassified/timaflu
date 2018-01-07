@@ -17,6 +17,7 @@ require('php/functions.php');
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script src="js/main.js"></script>
         <script src="js/charts.js"></script>
+        <script src="js/sorttable.js"></script>
     </head>
     <body>
         <div id="main">
@@ -93,7 +94,7 @@ require('php/functions.php');
                                 <col style="width:20%">
                                 <col style="width:22%">
                                 <col style="width:20%">
-                                <tbody>
+                                <thead>
                                     <tr>
                                         <th><span>Order ID</span></th>
                                         <th><span>Costumer name</span></th>
@@ -101,6 +102,8 @@ require('php/functions.php');
                                         <th><span>Status</span></th>
                                         <th><span>First invoiced</span></th>
                                     </tr>
+                                </thead>
+                                <tbody>
                                     <tr>
                                         <td><span>7563548</span></td>
                                         <td><span>Buurtapotheek Albergen</span></td>
@@ -192,11 +195,13 @@ require('php/functions.php');
                             <table class="stats">
                                 <col style="width:57%">
                                 <col style="width:43%">
-                                <tbody>
+                                <thead>
                                     <tr>
                                         <th>Costumer name</th>
                                         <th>Awaiting</th>
                                     </tr>
+                                </thead>
+                                <tbody>
                                     <tr>
                                         <td>Alphega Apotheek De Betuwe</td>
                                         <td><div class="switcher red"><span class="blinker">&#8364; 723,83</span></div></td>

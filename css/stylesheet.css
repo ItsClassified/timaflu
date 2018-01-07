@@ -318,6 +318,9 @@ table.stats{
     background-color: #f9f9f9;
     border-top: thin solid #dedede;
 }
+table.stats thead tr{
+    height: 35px;
+}
 table.stats tr:nth-of-type(even) {
     background-color:#FFFFFF;
 }
@@ -374,6 +377,9 @@ table.products{
     margin-bottom: 10px;
     width: 100%;
     background-color: #f9f9f9;
+}
+table.products thead tr{
+    height: 35px;
 }
 table.products tr:nth-of-type(even) {
     background-color:#FFFFFF;
