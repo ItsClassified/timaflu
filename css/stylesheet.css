@@ -338,8 +338,12 @@ table.stats th{
     padding-left: 20px;
     text-align: left;
 }
+table.stats td progress{
+    display: block;
+    margin: 0 auto;
+}
 
-table.stats td .switcher{
+.switcher{
     display: inline-block;
     max-width: 100%;
     border-radius: 9999px;
@@ -347,32 +351,27 @@ table.stats td .switcher{
     color: white;
     padding: 2px 4px;
 }
-table.stats td .switcher.red{
+.switcher.red{
     background-color: red;
 }
-table.stats td .switcher.orange{
+.switcher.orange{
     background-color: darkorange;
 }
-table.stats td .switcher.green{
+.switcher.green{
     background-color: green;
 }
-table.stats td .switcher.grey{
+.switcher.grey{
     background-color: darkgrey;
 }
-table.stats td .switcher.white{
+.switcher.white{
     background-color: white;
     color: black;
 }
-
-table.stats td .switcher span.blinker{
+.switcher span.blinker{
     animation: head 1s linear infinite;
 }
-table.stats td .switcher span.blinker.fast{
+.switcher span.blinker.fast{
     animation-duration: 0.5s;
-}
-table.stats td progress{
-    display: block;
-    margin: 0 auto;
 }
 
 table.products a {
