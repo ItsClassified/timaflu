@@ -156,10 +156,6 @@ header.hero ul.items .blinker.orange{
     background-color: #ff7600;
 }
 
-header.hero .step button{
-    display: block;
-    margin: 0 auto;
-}
 header.hero .step progress{
     display: block;
     margin: 0 auto;
@@ -187,7 +183,6 @@ footer{
     padding: 8px 20px;
     align-items: center;
     border-top: thin solid #dedede;
-    border-bottom: thin solid #dedede;
 }
 
 footer label{
@@ -301,10 +296,6 @@ footer label img{
 img.gauge{
     width: 100%;
 }
-button{
-    margin: 0 auto;
-    display: block; 
-}
 
 /******** TABLES ********/
 table.stats a {
@@ -313,10 +304,9 @@ table.stats a {
 }
 table.stats{
     border-collapse: collapse;
-/*    margin-bottom: 10px;*/
+    margin-bottom: 10px;
     width: 100%;
     background-color: #f9f9f9;
-    border-top: thin solid #dedede;
 }
 table.stats tr:nth-of-type(even) {
     background-color:#FFFFFF;
@@ -358,11 +348,8 @@ table.stats td .switcher.white{
     color: black;
 }
 
-table.stats td .switcher span.blinker{
+table.stats td .switcher span{
     animation: head 1s linear infinite;
-}
-table.stats td .switcher span.blinker.fast{
-    animation-duration: 0.5s;
 }
 
 table.products a {
