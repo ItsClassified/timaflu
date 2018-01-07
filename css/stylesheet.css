@@ -164,6 +164,9 @@ header.hero .step progress{
     display: block;
     margin: 0 auto;
 }
+header p button{
+    display: inline;
+}
 
 /******** MAIN CONTAINER OF THE WEBSITE ********/
 .main{
@@ -366,6 +369,10 @@ table.stats td .switcher span.blinker{
 }
 table.stats td .switcher span.blinker.fast{
     animation-duration: 0.5s;
+}
+table.stats td progress{
+    display: block;
+    margin: 0 auto;
 }
 
 table.products a {
