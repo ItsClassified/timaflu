@@ -154,6 +154,7 @@ if(isset($_POST['getorderinfo'])) {
                         ?>
                     </label>
                 <label OnClick='NextOrder()'>Next</label>
+                <label>Total Price: € 352</label>
             </footer>
         </div>
     <?php
