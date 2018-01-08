@@ -2,26 +2,7 @@
 <?php
 require('functions.php');
 
-function GetPagesFooter($sql, $start){ ?>
-    <footer>
-    <label OnClick='Previous()'>Previous</label>
-        <label id='pages'>
-            <?php
-                $items = GetAmountOfPages($sql);
-                for ($i=0; $i < $items / 10; $i++) {
-                    $j = $i + 1;
-                    $k = $i * 10;
-                    if ($k == $start) {
-                        echo "<label id='$k' OnClick='GoToOrderPage(this)'><b>$j</b> </label>";
-                    } else {
-                        echo "<label id='$k' OnClick='GoToOrderPage(this)'>$j </label>";
-                    }  
-                }
-            ?>
-        </label>
-    <label OnClick='Next()'>Next</label>
-</footer> <?php
-}
+
 /**
  * Ajax needed for purchase_step1.php
  */
@@ -33,16 +14,9 @@ if(isset($_POST['getlowproducts'])){
 /**
  * Ajax needed for billing_Step1.php
  */
-if(isset($_POST['getorders'])){
-    GetOrders($_POST['name'], $_POST['id']);
-    GetPagesFooter("SELECT * FROM orders as o INNER JOIN order_items as oi ON oi.order_id = o.id", 10);
-    
-}
-
 if(isset($_POST['selectorder'])){
     $_SESSION['billing_order'] = $_POST['id'];
 }
-
 
 if(isset($_POST['send_invoice'])){
     require_once "Mail.php";

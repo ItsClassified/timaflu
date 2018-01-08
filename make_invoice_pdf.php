@@ -22,7 +22,8 @@ include('php/functions.php');
     $sql = "SELECT 
                 oi.date date,
                 p.name name,
-                (oi.delivered_quantity - oi.invoiced_quantity) quantity,
+                (oi.delivered_quantity - oi.invoiced_quantity)quantity,
+                p.parcel_size psize,
                 oi.price price,
                 (oi.price * (oi.delivered_quantity - oi.invoiced_quantity)) total
             FROM
@@ -127,7 +128,7 @@ for ($i=0; $i < sizeof($order); $i++) {
     $date = $date->format('Y-m-d');
     $dates .= "\n" . $date;
 
-    $description .= "\n" . $order[$i]['name'];
+    $description .= "\n" . $order[$i]['name'] . " (". $order[$i]['psize'] . ")";
 
     $quantity    .= "\n" . $order[$i]['quantity'];
 

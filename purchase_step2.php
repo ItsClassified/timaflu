@@ -1,10 +1,10 @@
-<!DOCTYPE html> <!-- CLEANED -->
+<!DOCTYPE html>
 <?php
 require('php/functions.php');
 ?>
 <html lang="en">
     <head>
-        <title>Timaflu - Billing</title>
+        <title>Timaflu - Purchasing</title>
         <link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>
         <link rel="stylesheet" type="text/css" href="css/top.css"/>
         <link rel="stylesheet" type="text/css" href="css/form.css" />
@@ -20,20 +20,73 @@ require('php/functions.php');
         <script src="js/sorttable.js"></script>
 
         <script type="text/javascript">
+        var productsStart = 0;
 
-        function SelectOrder(el) {
-            var id = $(el).attr('id');
+        $('#products_search_name').keyup(function(e) {
+            alert(e);
+            ShowProducts(e);
+        });
+        // $('#products_search_id').keyup(function(e) {
+        //     ShowProducts(e);
+        // });
+        
+        $.ajax({
+            type: 'post',
+            data: {getlowproducts: ' ', name: '', id: ''},
+            url: "/php/ajax.php", 
+            success: function(result){
+                $('#products').html(result);
+        }});
+
+        /**
+            Functions for showing the orders
+        */
+        function ShowProducts(el) {
+            var name = $('#products_search_name').val();
+            // var id = $('#order_search_order_id').val();
         
             $.ajax({
                 type: 'post',
-                data: {selectorder: ' ', id: id},
+                data: {getlowproducts: ' ', name: name},
                 url: "/php/ajax.php", 
                 success: function(result){
-                    window.location.href = "billing_stepA1.php";
+                    $('#orders').html(result);
             }});
         };
-        </script>
 
+        /**
+            Code needed for the switch between pages
+         */
+        function Next() {
+            var start = productsStart + 10;
+            var name = $('#products_search_name').val();
+
+            $.ajax({
+                type: 'post',
+                data: {getlowproducts: ' ', start: start, end: start + 10, name: name},
+                url: "/php/ajax.php",
+                success: function(result){
+                    $('#products').html(result);
+                    productsStart = start;
+            }});
+        };
+
+        function Previous() {
+            if (!productsStart == 0) {
+                var start = productsStart - 10;
+                var name = $('#products_search_name').val();
+
+                $.ajax({
+                    type: 'post', 
+                    data: {getlowproducts: ' ', start: start, end: start + 10, name: name},
+                    url: "/php/ajax.php",
+                    success: function(result){
+                        $('#products').html(result);
+                        productsStart = start;
+                }});
+            }
+        };
+        </script>
     </head>
     <body>
         <div id="main">
@@ -96,24 +149,15 @@ require('php/functions.php');
                     <div class="row">
                         <div class="cont9 card">
                             <header>
-                                <h4 class="title">Order Display</h4>
-                                <p class="description">Select an order to create a new invoice</p>
+                                <h4 class="title">Low Stock Display</h4>
+                                <p class="description">Select a product to view different manufacturer prices</p>
                                 <div class="row">
-                                    <div class="cont10 card right content">
-                                        <input id='order_search_customer_name' class='cont12' type='text' placeholder='Customer Name'></input>
+                                    <div class="cont12 card right content">
+                                        <input id='products_search_name' class='cont12' type='text'></input>
                                     </div>
-                                    <div class="cont2 card right content">
-                                        <input id='order_search_order_id' class='cont12' type='text' placeholder='Order ID'></input>
-                                    </div>
-                                    
                                 </div>
                             </header>
-                            <?php GetOrders('', '');?>
-                            <footer>
-                                <label>Previous</label>
-                                <label><b>1</b></label>
-                                <label>Next</label>
-                            </footer>
+                           <div id="products"></div>
                         </div>
                         <div class="cont3 card">
                             <header>

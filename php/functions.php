@@ -32,7 +32,7 @@ function GetOrders($name, $id) {
                 c.name AS cname,
                 o.completion_date AS ocompldate,
                 s.name AS orderstatus,
-                SUM((oi.price * oi.quantity)) AS price
+                SUM((oi.price * (oi.delivered_quantity - oi.invoiced_quantity))) AS price
             FROM
                 orders as o
             INNER JOIN customers as c
@@ -80,6 +80,57 @@ function GetOrders($name, $id) {
     }
     echo "</tbody>";
     echo "</table>";
+}
+
+////////////////////////////////////////////////////////////////////////////
+// ALL THE PHP NEEDED FOR THE BILLING_STEPA1.PHP
+////////////////////////////////////////////////////////////////////////////
+function GetInvoiceItems($order_id) {
+    $db = ConnectDatabase();
+    
+        $sql = "SELECT 
+                    p.name name,
+                    (oi.delivered_quantity - oi.invoiced_quantity) quantity,
+                    oi.price price,
+                    p.parcel_size psize,
+                    (oi.price * (oi.delivered_quantity - oi.invoiced_quantity)) total
+                FROM
+                    orders o
+                        INNER JOIN
+                    order_items oi ON o.id = oi.order_id
+                        INNER JOIN
+                    products p ON p.id = oi.product_id
+                WHERE
+                    o.id = $order_id";
+    
+        $result = $db->prepare($sql);
+        $result->execute();
+    
+        $rows = $result->fetchAll(PDO::FETCH_ASSOC);
+        echo "<table class='stats sortable'>";
+        echo "<col style='width:57%'>";
+        echo "<col style='width:8%'>";
+        echo "<col style='width:15%'>";
+        echo "<col style='width:15%'>";
+        echo "<thead>";
+            echo "<tr>";
+                echo "<th><span>Product</span></th>";
+                echo "<th><span>Qt.</span></th>";
+                echo "<th><span>Price/p</span></th>";
+                echo "<th><span>Total</span></th>";
+            echo "</tr>";
+        echo "</thead>";
+        echo "<tbody>";
+        for ($i=0; $i < sizeof($rows); $i++) {
+            echo "<tr>";
+            echo "<td><span>" . $rows[$i]['name'] . " (" . $rows[$i]['psize'] . ")</span></td>";
+            echo "<td><span>" . $rows[$i]['quantity'] . "</span></td>";
+            echo "<td><span>&#8364; " . $rows[$i]['price'] . "</span></td>";
+            echo "<td><span>&#8364; " . $rows[$i]['total'] . "</span></td>";
+            echo "</tr>";
+        }
+        echo "</tbody>";
+        echo "</table>";
 }
 ////////////////////////////////////////////////////////////////////////////
 // ALL THE PHP NEEDED FOR THE ORDER.PHP
@@ -564,6 +615,27 @@ function GetManufacturerList($aiid, $strengthquantity) {
     //     return $info;
     // }
 
+    function GetPagesFooter($sql, $start){ ?>
+        <footer>
+        <label OnClick='Previous()'>Previous</label>
+            <label id='pages'>
+                <?php
+                    $items = GetAmountOfPages($sql);
+                    for ($i=0; $i < $items / 10; $i++) {
+                        $j = $i + 1;
+                        $k = $i * 10;
+                        if ($k == $start) {
+                            echo "<label id='$k' OnClick='GoToOrderPage(this)'><b>$j</b> </label>";
+                        } else {
+                            echo "<label id='$k' OnClick='GoToOrderPage(this)'>$j </label>";
+                        }  
+                    }
+                ?>
+            </label>
+        <label OnClick='Next()'>Next</label>
+    </footer> <?php
+    }
+    
     function DrawTable($query)
     {
         $db = ConnectDatabase();
