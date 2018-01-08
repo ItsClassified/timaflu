@@ -325,12 +325,35 @@ require('php/functions.php');
                                         <input id='customer_search_phone' class="cont12" type='text' placeholder="Phone Number"></input>
                                     </div>
                                     <div class="cont2">
-                                        <div class="message">Create New</div> <!-- TODO FIX THIS buLLSHIT SO IT LOOKS BETTER -->
+                                        <div class="message" >Create New</div> <!-- TODO FIX THIS buLLSHIT SO IT LOOKS BETTER -->
                                     </div>
                                 </div>
                             </header>
                             <div id='customers'></div>
                             <div id='customerinfo'></div>
+                            <div id='newcustomer' hidden>
+                                <div class='card'>
+                                    <table class='stats'>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Phone</th>
+                                            <th>Contact</th>
+                                            <th>URL</th>
+                                        </tr>
+                                        <tr>
+                                            <td><input id='customer_name' class="cont12" type='text' placeholder="Name"></input></td>
+                                            <td><input id='phone' class="cont12" type='text' placeholder="Phone"></input></td>
+                                            <td><input id='contact_name' class="cont12" type='text' placeholder="Contact name"></input></td>
+                                            <td><input id='url' class="cont12" type='text' placeholder="URL"></input></td>            
+                                        </tr>
+                                    </table>
+                                    <footer>
+                                        <label class='message correct clickable' OnClick='ConfirmCustomer(this)' id='select' value='" . $customer_id . "'>Confirm</label>
+                                        <label class='message warn clickable'>Close</label>
+                                        <label OnClick='RemoveCustomer(this)' id='" . $customer_id . "' class='message correct clickable'>Charts</label>
+                                    </footer>
+                                </div>
+                            </div>
                             <div id='customercharts' hidden></div>
                             <div id='orderinfo' style="display: none;"></div>
                             <div class="row" id="product_search" style="display: none;">
