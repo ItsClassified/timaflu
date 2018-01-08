@@ -427,6 +427,73 @@ function StockInfoActiveIngredient($name, $id) {
     echo "</table>";
 }
 
+function GetManufacturerList($aiid, $strengthquantity) {
+    $db = ConnectDatabase();
+
+    $sql = "SELECT 
+                p.name AS pname,
+                p.strength_quantity AS pstrength,
+                su.unit AS sunit,
+                p.parcel_size AS psize,
+                (s.stock * p.parcel_size) AS curstock,
+                p.minimum_stock AS minstock,
+                ppl.price AS purprice,
+                m.name AS manname
+            FROM
+                products p
+                    LEFT JOIN
+                strength_units su ON p.strength_unit = su.id
+                    LEFT JOIN
+                stock s ON p.id = s.product_id
+                    LEFT JOIN
+                purchase_price_loggs ppl ON ppl.product_id = p.id
+                    LEFT JOIN
+                manufacturers m ON m.id = p.manufacturer_id
+            WHERE
+                (s.current = 1 OR s.current IS NULL)
+                    AND (ppl.current = 1 OR ppl.current IS NULL)
+                    AND p.active_ingredient_id = $aiid
+                    AND p.strength_quantity = $strengthquantity
+            GROUP BY p.id
+            ORDER BY ppl.price ASC
+            ";
+
+    $result = $db->prepare($sql);
+    $result->execute();
+
+    $rows = $result->fetchAll(PDO::FETCH_ASSOC);
+    echo "<table class='stats sortable'>";
+    echo "<col style='width:30%'>";
+    echo "<col style='width:15%'>";
+    echo "<col style='width:10%'>";
+    echo "<col style='width:10%'>";
+    echo "<col style='width:10%'>";
+    echo "<col style='width:25%'>";
+    echo "<thead>";
+        echo "<tr>";
+            echo "<th><span>Product name</span></th>";
+            echo "<th><span>Strength</span></th>";
+            echo "<th><span>Parcel</span></th>";
+            echo "<th><span>Current stock</span></th>";
+            echo "<th><span>Purchase price</span></th>";
+            echo "<th><span>Manufacturer</span></th>";
+        echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+    for ($i=0; $i < sizeof($rows); $i++) {
+        echo "<tr OnClick='SelectOrder(this)' id='". $rows[$i]['aiid'] . "'>";
+            echo "<td><span>" . $rows[$i]['pname'] . "</span></td>";
+            echo "<td><span>" . $rows[$i]['pstrength'] . ' ' . $rows[$i]['sunit'] . "</span></td>";
+            
+            echo "<td><span>" . $rows[$i]['curstock'] . "</span></td>";
+            echo "<td><span>" . $rows[$i]['purprice'] . "</span></td>";
+            echo "<td><span>" . $rows[$i]['manname'] . "</span></div></td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    echo "</table>";
+}
+
 ?>
 
 
