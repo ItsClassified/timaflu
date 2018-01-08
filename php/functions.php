@@ -415,7 +415,7 @@ function GetStockInfoProduct($productid){
             echo "<tr>";
         echo "<table class='stats'>";
         // Print the edit/close/delete buttons, add EditProductInfo to onlcick so it does something when we click it later on
-        echo "<footer><label class='message correct clickable' OnClick='EditProductInfo(this)' id='edit' value='" . $productid . "'>Edit</label><label class='message warn clickable'>Close</label><label OnClick='ShowChartsStock(this)' id='" . $productid . "' class='message correct clickable'>Charts</label></footer>";
+        echo "<footer><label class='message correct clickable' OnClick='EditProductInfo(this)' id='edit' value='" . $productid . "'>Edit</label><label class='message warn clickable'>Finish &amp; Save</label><label OnClick='ShowChartsStock(this)' id='" . $productid . "' class='message correct clickable'>Charts</label></footer>";
 }
 
 function StockInfoActiveIngredient($name, $id) {
