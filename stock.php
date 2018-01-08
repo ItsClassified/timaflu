@@ -161,13 +161,6 @@ require('php/functions.php');
             <div class="container-main"> 
                 <header class="hero">
                     <ul class="items">           
-                        <a href="index.html">
-                            <li>
-                                <div class="notify"><div class="blinker green"></div></div>
-                                <img src="img/dashboard-white.png">
-                                <span class="description">Dash&shy;board</span>
-                            </li>
-                        </a>
                         <a href="order.php">
                             <li>
                                 <div class="notify"><div class="blinker green"></div></div>
@@ -182,14 +175,21 @@ require('php/functions.php');
                                 <span class="description">Stock</span>
                             </li>
                         </a>
-                        <a href="billing.php">
+                        <a href="billing_step1.php">
                             <li>
                                 <div class="notify"><div class="blinker orange"></div></div>
                                 <img src="img/invoice.png">
                                 <span class="description">Billing</span>
                             </li>
                         </a>
-                        <a href="distribution.php">
+                        <a href="purchase_step1.php">
+                            <li>
+                                <div class="notify"><div class="blinker red"></div></div>
+                                <img src="img/purchase.png">
+                                <span class="description">Purchase</span>
+                            </li>
+                        </a>
+                        <a href="distribution_step1.html">
                             <li>
                                 <div class="notify"><div class="blinker red"></div></div>
                                 <img src="img/distr.png">
@@ -245,19 +245,9 @@ require('php/functions.php');
                         </div>
                     </div>
                     <footer>
+                        <label></label>
                         <label>&#9400; 2017 | version 1.0 beta 6</label>
-                        <label><a href="sitemap.html"><img src="img/sitemap.png" alt="Sitemap"></a>&#10095; Sitemap</label>
-                        <label>
-                            <a href="index.html">Home</a>
-                            <span> - </span>
-                            <a href="stats.html">Stats</a>
-                            <span> - </span>
-                            <a href="contact.html">Contact</a>
-                            <span> - </span>
-                            <a href="game.html">Game</a>
-                            <span> - </span>
-                            <a href="aboutus.html">About</a>
-                        </label>
+                        <label></label>
                     </footer>
                 </div>
             </div>

@@ -9,7 +9,7 @@ if(!isset($_SESSION['billing_order'])){
 ?>
 <html lang="en">
     <head>
-        <title>Timaflu - Billing</title>
+        <title>Timaflu - Billing - Create Invoice</title>
         <link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>
         <link rel="stylesheet" type="text/css" href="css/top.css"/>
         <link rel="stylesheet" type="text/css" href="css/form.css" />
@@ -83,19 +83,9 @@ if(!isset($_SESSION['billing_order'])){
                         </div>
                     </div>
                     <footer>
+                        <label></label>
                         <label>&#9400; 2017 | version 1.0 beta 6</label>
-                        <label><a href="sitemap.html"><img src="img/sitemap.png" alt="Sitemap"></a>&#10095; Sitemap</label>
-                        <label>
-                            <a href="index.html">Home</a>
-                            <span> - </span>
-                            <a href="stats.html">Stats</a>
-                            <span> - </span>
-                            <a href="contact.html">Contact</a>
-                            <span> - </span>
-                            <a href="game.html">Game</a>
-                            <span> - </span>
-                            <a href="aboutus.html">About</a>
-                        </label>
+                        <label></label>
                     </footer>
                 </div>
             </div>

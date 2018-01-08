@@ -54,13 +54,6 @@ require('php/functions.php');
             <div class="container-main"> 
                 <header class="hero">
                     <ul class="items">           
-                        <a href="index.html">
-                            <li>
-                                <div class="notify"><div class="blinker green"></div></div>
-                                <img src="img/dashboard-white.png">
-                                <span class="description">Dash&shy;board</span>
-                            </li>
-                        </a>
                         <a href="order.php">
                             <li>
                                 <div class="notify"><div class="blinker green"></div></div>
@@ -75,14 +68,21 @@ require('php/functions.php');
                                 <span class="description">Stock</span>
                             </li>
                         </a>
-                        <a href="billing.php">
+                        <a href="billing_step1.php">
                             <li>
                                 <div class="notify"><div class="blinker orange"></div></div>
                                 <img src="img/invoice.png">
                                 <span class="description">Billing</span>
                             </li>
                         </a>
-                        <a href="distribution.php">
+                        <a href="purchase_step1.php">
+                            <li>
+                                <div class="notify"><div class="blinker red"></div></div>
+                                <img src="img/purchase.png">
+                                <span class="description">Purchase</span>
+                            </li>
+                        </a>
+                        <a href="distribution_step1.html">
                             <li>
                                 <div class="notify"><div class="blinker red"></div></div>
                                 <img src="img/distr.png">
@@ -93,7 +93,7 @@ require('php/functions.php');
                 </header>
                 <div class="main">
                     <div class="row">
-                        <div class="cont9 card">
+                        <div class="cont12 card">
                             <header>
                                 <h4 class="title">Low Stock Display</h4>
                                 <p class="description">Select a product to view different manufacturer prices</p>
@@ -110,61 +110,11 @@ require('php/functions.php');
                                 <label>Next</label>
                             </footer>
                         </div>
-                        <div class="cont3 card">
-                            <header>
-                                <h4 class="title">Outstanding amounts</h4>
-                                <p class="description">Select a costumer to view invoices</p>
-                                <div class="row">
-                                    <div class="cont12 card right content">
-                                        <input id='stock_search' class='cont12' type='text'></input>
-                                    </div>
-                                </div>
-                            </header>
-                            <table class="stats sortable">
-                                <col style="width:57%">
-                                <col style="width:43%">
-                                <thead>
-                                    <tr>
-                                        <th>Costumer name</th>
-                                        <th>Awaiting</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Alphega Apotheek De Betuwe</td>
-                                        <td><div class="switcher red"><span class="blinker">&#8364; 723,83</span></div></td>
-                                    </tr>
-                                    <tr>
-                                        <td>SAL Apotheek Brandevoort</td>
-                                        <td><div class="switcher red"><span class="blinker">&#8364; 2734,22</span></div></td>
-                                    </tr>
-                                    <tr OnClick="document.location='billing_stepB1.html'" style="cursor:pointer">
-                                        <td>BENU Apotheek Ghen heij</td>
-                                        <td><div class="switcher red"><span class="blinker">&#8364; 6743,90</span></div></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <footer>
-                                <label>Previous</label>
-                                <label><b>1</b></label>
-                                <label>Next</label>
-                            </footer>
-                        </div>
                     </div>
                     <footer>
+                        <label></label>
                         <label>&#9400; 2017 | version 1.0 beta 6</label>
-                        <label><a href="sitemap.html"><img src="img/sitemap.png" alt="Sitemap"></a>&#10095; Sitemap</label>
-                        <label>
-                            <a href="index.html">Home</a>
-                            <span> - </span>
-                            <a href="stats.html">Stats</a>
-                            <span> - </span>
-                            <a href="contact.html">Contact</a>
-                            <span> - </span>
-                            <a href="game.html">Game</a>
-                            <span> - </span>
-                            <a href="aboutus.html">About</a>
-                        </label>
+                        <label></label>
                     </footer>
                 </div>
             </div>
