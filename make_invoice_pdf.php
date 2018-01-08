@@ -4,7 +4,7 @@ require('fpdf.php');
 include('php/functions.php');
 
     $db = ConnectDatabase();
-    $order_id = 2;
+    $order_id = $_SESSION['billing_order'];
 
     // Get customer information
     $sql = "SELECT c.*,  a.address FROM customers c
@@ -19,10 +19,20 @@ include('php/functions.php');
     $customer_address = explode(",", $customer[0]['address']);
 
     // Get order information
-    $sql = "SELECT oi.date date, p.name name, oi.quantity quantity, oi.price price, (oi.price * oi.quantity) total FROM orders o
-    INNER JOIN order_items oi ON o.id = oi.order_id
-    INNER JOIN products p ON p.id = oi.product_id
-    WHERE o.id = $order_id";
+    $sql = "SELECT 
+                oi.date date,
+                p.name name,
+                (oi.delivered_quantity - oi.invoiced_quantity) quantity,
+                oi.price price,
+                (oi.price * (oi.delivered_quantity - oi.invoiced_quantity)) total
+            FROM
+                orders o
+                    INNER JOIN
+                order_items oi ON o.id = oi.order_id
+                    INNER JOIN
+                products p ON p.id = oi.product_id
+            WHERE
+                o.id = $order_id";
 
     $result = $db->prepare($sql);
     $result->execute();
@@ -111,6 +121,8 @@ $total         = "";
 $total_overall = 0;
 
 for ($i=0; $i < sizeof($order); $i++) {
+    $total_overall += intval($order[$i]['total']);
+
     $date = new DateTime($order[$i]['date']) ;  
     $date = $date->format('Y-m-d');
     $dates .= "\n" . $date;
@@ -122,8 +134,6 @@ for ($i=0; $i < sizeof($order); $i++) {
     $price       .= "\n" . $order[$i]['price'];
 
     $total       .= "\n" . $order[$i]['total'];
-
-    $total_overall += intval($total);
 }
 
 // Date

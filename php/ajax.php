@@ -1,6 +1,16 @@
 
 <?php
 require('functions.php');
+/**
+ * Ajax needed for billing_Step1.php
+ */
+if(isset($_POST['getorders'])){
+    GetOrders($_POST['name'], $_POST['id']);
+}
+
+if(isset($_POST['selectorder'])){
+    $_SESSION['billing_order'] = $_POST['id'];
+}
 
 /**
  * Ajax needed for stock.php

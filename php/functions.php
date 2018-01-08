@@ -22,6 +22,66 @@ function GetAmountOfPages($sql){
 }
 
 ////////////////////////////////////////////////////////////////////////////
+// ALL THE PHP NEEDED FOR THE BILLING_STEP1.PHP
+////////////////////////////////////////////////////////////////////////////
+function GetOrders($name, $id) {
+    $db = ConnectDatabase();
+
+    $sql = "SELECT 
+                o.id AS oid,
+                c.name AS cname,
+                o.completion_date AS ocompldate,
+                s.name AS orderstatus,
+                SUM((oi.price * oi.quantity)) AS price
+            FROM
+                orders as o
+            INNER JOIN customers as c
+                ON o.customer_id = c.id
+            INNER JOIN order_items as oi
+                ON oi.order_id = o.id
+            INNER JOIN order_status as s
+                ON s.id = o.status_id
+            WHERE o.id LIKE '%$id%' AND c.name LIKE '%$name%'
+            GROUP BY o.id
+            ";
+
+    $result = $db->prepare($sql);
+    $result->execute();
+
+    $rows = $result->fetchAll(PDO::FETCH_ASSOC);
+    echo "<table class='stats sortable'>";
+    echo "<col style='width:10%'>";
+    echo "<col style='width:28%'>";
+    echo "<col style='width:20%'>";
+    echo "<col style='width:22%'>";
+    echo "<col style='width:20%'>";
+    echo "<thead>";
+        echo "<tr>";
+            echo "<th><span>Order ID</span></th>";
+            echo "<th><span>Costumer name</span></th>";
+            echo "<th><span>Order completed for</span></th>";
+            echo "<th><span>Status</span></th>";
+            echo "<th><span>First invoiced</span></th>";
+        echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+    for ($i=0; $i < sizeof($rows); $i++) {
+    echo "<tr OnClick='SelectOrder(this)' id='". $rows[$i]['oid'] . "'>";
+        echo "<td><span>" . $rows[$i]['oid'] . "</span></td>";
+        echo "<td><span>" . $rows[$i]['cname'] . "</span></td>";
+        echo "<td><div class='switcher red'><span>" . $rows[$i]['ocompldate'] . "</span></div></td>"; // TODO fix date
+        if($rows[$i]['orderstatus'] == "completed"){
+            echo "<td><div class='switcher green'><span>billable</span><div class='switcher white'><span>" . $rows[$i]['price'] . "</span></div></div></td>";
+        } else if($rows[$i]['orderstatus'] == "open"){
+            echo "<td><div class='switcher grey'><span>awaits completion </span><div class='switcher white'><span>-</span></div></div></td>";
+        }
+        echo "<td><div class='switcher orange'><span>17-12-2017 </span><div class='switcher white'><span>19 days ago</span></div></div></td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    echo "</table>";
+}
+////////////////////////////////////////////////////////////////////////////
 // ALL THE PHP NEEDED FOR THE ORDER.PHP
 ////////////////////////////////////////////////////////////////////////////
 function GetCustomers($phone, $name){
