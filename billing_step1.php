@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- CLEANED -->
 <?php
 require('php/functions.php');
 ?>
@@ -20,38 +20,6 @@ require('php/functions.php');
         <script src="js/sorttable.js"></script>
 
         <script type="text/javascript">
-        currentStart = 0;
-
-        $('#order_search_customer_name').keyup(function(e) {
-            ShowOrders(e);
-        });
-        $('#order_search_order_id').keyup(function(e) {
-            ShowOrders(e);
-        });
-        
-        $.ajax({
-            type: 'post',
-            data: {getorders: ' ', name: '', id: ''},
-            url: "/php/ajax.php", 
-            success: function(result){
-                $('#orders').html(result);
-        }});
-
-        /**
-            Functions for showing the orders
-        */
-        function ShowOrders(el) {
-            var name = $('#order_search_customer_name').val();
-            var id = $('#order_search_order_id').val();
-        
-            $.ajax({
-                type: 'post',
-                data: {getorders: ' ', name: name, id: id},
-                url: "/php/ajax.php", 
-                success: function(result){
-                    $('#orders').html(result);
-            }});
-        };
 
         function SelectOrder(el) {
             var id = $(el).attr('id');
@@ -63,41 +31,6 @@ require('php/functions.php');
                 success: function(result){
                     window.location.href = "billing_stepA1.php";
             }});
-        };
-
-        /**
-            Code needed for the switch between pages
-         */
-        function Next() {
-            var start = currentStart + 10;
-            var name = $('#order_search_customer_name').val();
-            var id = $('#order_search_order_id').val();
-
-            $.ajax({
-                type: 'post',
-                data: {getorders: ' ', start: start, end: start + 10, name: name, id: id},
-                url: "/php/ajax.php",
-                success: function(result){
-                    $('#orders').html(result);
-                    currentStart = start;
-            }});
-        };
-
-        function Previous() {
-            if (!currentStart == 0) {
-                var start = currentStart - 10;
-                var name = $('#order_search_customer_name').val();
-                var id = $('#order_search_order_id').val();
-
-                $.ajax({
-                    type: 'post', 
-                    data: {getorders: ' ', start: start, end: start + 10, name: name, id: id},
-                    url: "/php/ajax.php",
-                    success: function(result){
-                        $('#orders').html(result);
-                        currentStart = start;
-                }});
-            }
         };
         </script>
 
@@ -167,15 +100,20 @@ require('php/functions.php');
                                 <p class="description">Select an order to create a new invoice</p>
                                 <div class="row">
                                     <div class="cont10 card right content">
-                                        <input id='order_search_customer_name' class='cont12' type='text'></input>
+                                        <input id='order_search_customer_name' class='cont12' type='text' placeholder='Customer Name'></input>
                                     </div>
                                     <div class="cont2 card right content">
-                                        <input id='order_search_order_id' class='cont12' type='text'></input>
+                                        <input id='order_search_order_id' class='cont12' type='text' placeholder='Order ID'></input>
                                     </div>
                                     
                                 </div>
                             </header>
-                            <div id="orders"></div>
+                            <?php GetOrders('', '');?>
+                            <footer>
+                                <label>Previous</label>
+                                <label><b>1</b></label>
+                                <label>Next</label>
+                            </footer>
                         </div>
                         <div class="cont3 card">
                             <header>

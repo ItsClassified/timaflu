@@ -107,13 +107,54 @@ require('php/functions.php');
             </header>
             <div class="container-main"> 
                 <header class="hero">
+<<<<<<< HEAD
                     <div class="step">
                     </div>
+=======
+                    <ul class="items">           
+                        <a href="index.html">
+                            <li>
+                                <div class="notify"><div class="blinker green"></div></div>
+                                <img src="img/dashboard-white.png">
+                                <span class="description">Dash&shy;board</span>
+                            </li>
+                        </a>
+                        <a href="order.php">
+                            <li>
+                                <div class="notify"><div class="blinker green"></div></div>
+                                <img src="img/neworder.png">
+                                <span class="description">Create Order</span>
+                            </li>
+                        </a>
+                        <a href="stock.php">
+                            <li>
+                                <div class="notify"><div class="blinker red"></div></div>
+                                <img src="img/stock.png">
+                                <span class="description">Stock</span>
+                            </li>
+                        </a>
+                        <a href="billing.php">
+                            <li>
+                                <div class="notify"><div class="blinker orange"></div></div>
+                                <img src="img/invoice.png">
+                                <span class="description">Billing</span>
+                            </li>
+                        </a>
+                        <a href="distribution.php">
+                            <li>
+                                <div class="notify"><div class="blinker red"></div></div>
+                                <img src="img/distr.png">
+                                <span class="description">Distribution</span>
+                            </li>
+                        </a>
+                    </ul>
+>>>>>>> 6103376bbee87dec43ecf891b096ebd82e1f0548
                 </header>
                 <div class="main">
                     <div class="row">
                         <div class="cont9 card">
                             <header>
+<<<<<<< HEAD
                                 <h4 class="title">Manufacturers for active ingredient <?php echo $_SESSION['ainame']; ?></h4>
                                 <p class="description">...</p>
                             </header>
@@ -125,6 +166,57 @@ require('php/functions.php');
                                 <p class="description">Contact information for the manufacturer with lowest price</p>
                             </header>
                             <div id="manufacturer_info"></div>
+=======
+                                <h4 class="title">Low Stock Display</h4>
+                                <p class="description">Select a product to view different manufacturer prices</p>
+                                <div class="row">
+                                    <div class="cont12 card right content">
+                                        <input id='products_search_name' class='cont12' type='text'></input>
+                                    </div>
+                                </div>
+                            </header>
+                           <div id="products"></div>
+                        </div>
+                        <div class="cont3 card">
+                            <header>
+                                <h4 class="title">Outstanding amounts</h4>
+                                <p class="description">Select a costumer to view invoices</p>
+                                <div class="row">
+                                    <div class="cont12 card right content">
+                                        <input id='stock_search' class='cont12' type='text'></input>
+                                    </div>
+                                </div>
+                            </header>
+                            <table class="stats sortable">
+                                <col style="width:57%">
+                                <col style="width:43%">
+                                <thead>
+                                    <tr>
+                                        <th>Costumer name</th>
+                                        <th>Awaiting</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Alphega Apotheek De Betuwe</td>
+                                        <td><div class="switcher red"><span class="blinker">&#8364; 723,83</span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>SAL Apotheek Brandevoort</td>
+                                        <td><div class="switcher red"><span class="blinker">&#8364; 2734,22</span></div></td>
+                                    </tr>
+                                    <tr OnClick="document.location='billing_stepB1.html'" style="cursor:pointer">
+                                        <td>BENU Apotheek Ghen heij</td>
+                                        <td><div class="switcher red"><span class="blinker">&#8364; 6743,90</span></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <footer>
+                                <label>Previous</label>
+                                <label><b>1</b></label>
+                                <label>Next</label>
+                            </footer>
+>>>>>>> 6103376bbee87dec43ecf891b096ebd82e1f0548
                         </div>
                     </div>
                     <footer>

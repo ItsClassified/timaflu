@@ -1,5 +1,5 @@
-<?php
-require('fpdf.php');
+<?php // CLEANED
+require('php/fpdf.php');
 
 include('php/functions.php');
 
@@ -22,7 +22,8 @@ include('php/functions.php');
     $sql = "SELECT 
                 oi.date date,
                 p.name name,
-                (oi.delivered_quantity - oi.invoiced_quantity) quantity,
+                (oi.delivered_quantity - oi.invoiced_quantity)quantity,
+                p.parcel_size psize,
                 oi.price price,
                 (oi.price * (oi.delivered_quantity - oi.invoiced_quantity)) total
             FROM
@@ -127,7 +128,7 @@ for ($i=0; $i < sizeof($order); $i++) {
     $date = $date->format('Y-m-d');
     $dates .= "\n" . $date;
 
-    $description .= "\n" . $order[$i]['name'];
+    $description .= "\n" . $order[$i]['name'] . " (". $order[$i]['psize'] . ")";
 
     $quantity    .= "\n" . $order[$i]['quantity'];
 
@@ -193,10 +194,6 @@ $pdf->Text(145, 263, "Opmerkingen & Voorwaarden");
 $pdf->SetFont('Arial', '', 10);
 $pdf->SetXY(0, 265);
 $pdf->Multicell(195,5, "Wij verzoeken u vriendelijk het verschuldigde bedrag binnen 14 dagen over te maken onder vermelding van het factuurnummer", 0, 'R'); 
-// $pdf->
-// $pdf->SetFont('Times','',12);
-// for($i=1;$i<=40;$i++)
-//     $pdf->Cell(0,10,'Printing line number '.$i,0,1);
 $pdf->Output();
 $pdf->Output("pdf/order_" . $order_id . ".pdf",'F');
 ?>
