@@ -114,17 +114,17 @@ require('php/functions.php');
                     <div class="row">
                         <div class="cont9 card">
                             <header>
-                                <h4 class="title">Manufacturers for active ingredient <?php echo $_SESSION['ainame']; ?></h4>
+                                <h4 class="title">Manufacturers for asked ingredient</h4>
                                 <p class="description">...</p>
                             </header>
-                            <div id="products_activeingredient"></div>
+                            <?php GetManufacturerList($_SESSION['aiid'], $_SESSION['strength']); ?>
                         </div>
                         <div class="cont3 card">
                             <header>
-                                <h4 class="title">Contact info for <?php echo $_SESSION['manname']; ?></h4>
+                                <h4 class="title">Contact info for asked manufacturer</h4>
                                 <p class="description">Contact information for the manufacturer with lowest price</p>
                             </header>
-                            <div id="manufacturer_info"></div>
+                            <?php GetManufacturerInfo($_SESSION['mid']); ?>
                         </div>
                     </div>
                     <footer>

@@ -21,14 +21,6 @@ require('php/functions.php');
 
         <script type="text/javascript">
         var productsStart = 0;
-
-        $('#products_search_name').keyup(function(e) {
-            alert(e);
-            ShowProducts(e);
-        });
-        // $('#products_search_id').keyup(function(e) {
-        //     ShowProducts(e);
-        // });
         
         $.ajax({
             type: 'post',
@@ -51,6 +43,19 @@ require('php/functions.php');
                 url: "/php/ajax.php", 
                 success: function(result){
                     $('#orders').html(result);
+            }});
+        };
+
+        function SelectProduct(el) {
+            var id = $(el).attr('id');
+            var strength = $(el).attr('value');
+
+            $.ajax({
+                type: 'post',
+                data: {select_product_manufacturer: ' ', id: id, strength: strength},
+                url: "/php/ajax.php", 
+                success: function(result){
+                    window.location.href = "purchase_step2.php";
             }});
         };
 

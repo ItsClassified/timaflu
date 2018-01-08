@@ -462,7 +462,7 @@ function StockInfoActiveIngredient($name, $id) {
     echo "</thead>";
     echo "<tbody>";
     for ($i=0; $i < sizeof($rows); $i++) {
-        echo "<tr OnClick='alert(this)' id='". $rows[$i]['aiid'] . "'>";
+        echo "<tr OnClick='SelectProduct(this)' id='". $rows[$i]['aiid'] . "' value='". $rows[$i]['pstrength'] . "'>";
             echo "<td><span>" . $rows[$i]['ainame'] . "</span></td>";
             echo "<td><span>" . $rows[$i]['pstrength'] . ' ' . $rows[$i]['sunit'] . "</span></td>";
             echo "<td><span>" . $rows[$i]['nrman'] . "</span></td>";
@@ -482,6 +482,7 @@ function GetManufacturerList($aiid, $strengthquantity) {
     $db = ConnectDatabase();
 
     $sql = "SELECT 
+                m.id AS mid,
                 p.name AS pname,
                 p.strength_quantity AS pstrength,
                 su.unit AS sunit,
@@ -532,15 +533,17 @@ function GetManufacturerList($aiid, $strengthquantity) {
     echo "</thead>";
     echo "<tbody>";
     for ($i=0; $i < sizeof($rows); $i++) {
-        echo "<tr OnClick='SelectOrder(this)' id='". $rows[$i]['aiid'] . "'>";
+        echo "<tr>";
             echo "<td><span>" . $rows[$i]['pname'] . "</span></td>";
             echo "<td><span>" . $rows[$i]['pstrength'] . ' ' . $rows[$i]['sunit'] . "</span></td>";
-            
+            echo "<td><span>" . $rows[$i]['psize'] . "</span></td>";
             echo "<td><span>" . $rows[$i]['curstock'] . "</span></td>";
             echo "<td><span>" . $rows[$i]['purprice'] . "</span></td>";
             echo "<td><span>" . $rows[$i]['manname'] . "</span></div></td>";
         echo "</tr>";
     }
+
+    $_SESSION['mid'] = $rows[0]['mid'];
     echo "</tbody>";
     echo "</table>";
 }

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- CLEANED -->
 <?php
 require('php/functions.php');
 ?>

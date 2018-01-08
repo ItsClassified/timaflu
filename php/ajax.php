@@ -2,7 +2,10 @@
 <?php
 require('functions.php');
 
-
+if(isset($_POST['select_product_manufacturer'])){
+    $_SESSION['aiid'] = $_POST['id'];
+    $_SESSION['strength'] = $_POST['strength'];
+}
 /**
  * Ajax needed for purchase_step1.php
  */
