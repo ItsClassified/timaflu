@@ -51,9 +51,9 @@ function GetOrders($name, $id) {
     $rows = $result->fetchAll(PDO::FETCH_ASSOC);
     echo "<table class='stats sortable'>";
     echo "<col style='width:10%'>";
-    echo "<col style='width:28%'>";
     echo "<col style='width:20%'>";
-    echo "<col style='width:22%'>";
+    echo "<col style='width:17%'>";
+    echo "<col style='width:33%'>";
     echo "<col style='width:20%'>";
     echo "<thead>";
         echo "<tr>";

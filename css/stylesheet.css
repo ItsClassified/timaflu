@@ -49,6 +49,11 @@ img.invert{
     -webkit-filter: invert(100%);
 }
 
+img.loader{
+    height: 16px;
+    width: auto;
+}
+
 article{
     padding-left: 16px;
     padding-right: 16px;
@@ -332,14 +337,14 @@ table.stats tr:nth-of-type(even) {
 }
 table.stats td{
     border-top: 1px solid #ddd;
-    padding: 12px 20px;
+    padding: 8px 14px;
 }
 table.stats tr:hover{
     background-color: #F0F0F0;
 }
 table.stats th{
-    padding-left: 20px;
     text-align: left;
+    padding: 6px 14px;
 }
 table.stats td progress{
     display: block;
@@ -352,7 +357,8 @@ table.stats td progress{
     border-radius: 9999px;
     overflow: hidden;
     color: white;
-    padding: 2px 4px;
+    padding: 3px 7px;
+    text-align: center;
 }
 .switcher.red{
     background-color: red;
@@ -396,14 +402,14 @@ table.products tr:nth-of-type(even) {
 }
 table.products td{
     border-top: 1px solid #ddd;
-    padding: 6px 8px;
+    padding: 8px 14px;
 }
 table.products tr:hover{
     background-color: #F0F0F0;
 }
 table.products th{
-    padding-left: 8px;
     text-align: left;
+    padding: 6px 14px;
 }
 
 
