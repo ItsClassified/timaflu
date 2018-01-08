@@ -198,5 +198,5 @@ $pdf->Multicell(195,5, "Wij verzoeken u vriendelijk het verschuldigde bedrag bin
 // for($i=1;$i<=40;$i++)
 //     $pdf->Cell(0,10,'Printing line number '.$i,0,1);
 $pdf->Output();
-$pdf->Output(D,'order_id.pdf'); 
+$pdf->Output("pdf/order_" . $order_id . ".pdf",'F');
 ?>

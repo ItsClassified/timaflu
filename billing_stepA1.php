@@ -24,6 +24,20 @@ if(!isset($_SESSION['billing_order'])){
         <script src="js/charts.js"></script>
         <script src="js/sorttable.js"></script>
 
+        <script type="text/javascript">
+
+            function SendInvoice(el) {
+                var id = $(el).attr('id');
+            
+                $.ajax({
+                    type: 'post',
+                    data: {send_invoice: ' ', id: id},
+                    url: "/php/ajax.php",
+                    success: function(result){
+                        alert("Email has been send :)");
+                }});
+            };
+        </script>
     </head>
     <body>
         <div id="main">
@@ -47,7 +61,7 @@ if(!isset($_SESSION['billing_order'])){
                     <div class="step">
                         <progress>Unknown</progress>
                         <button type="button" formaction="billing_step1.html">&#x274C; Cancel invoice</button>
-                        <button>&#x1F4BE; Print &amp; save invoice</button>
+                        <button id="<?php echo $_SESSION['billing_order']; ?>" OnClick='SendInvoice(this)'>&#x1F4BE; Send &amp; save invoice</button>
                     </div>
                 </header>
                 <div class="main">
