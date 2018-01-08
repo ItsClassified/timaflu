@@ -185,7 +185,7 @@ function GetCustomerInfo($customer_id){
             echo "<td>" . $rows[$i]['url'] . "</td>";            
         echo "</tr>";
     }
-    echo "<footer><label class='message correct clickable' OnClick='ConfirmCustomer(this)' id='select' value='" . $customer_id . "'>Confirm</label><label class='message warn clickable'>Close</label><label OnClick='RemoveCustomer(this)' id='" . $customer_id . "' class='message correct clickable'>Charts</label></footer>";
+    echo "<footer><label class='message correct clickable' OnClick='ConfirmCustomer(this)' id='select' value='" . $customer_id . "'>Confirm</label><label class='message warn clickable'>Save</label><label OnClick='RemoveCustomer(this)' id='" . $customer_id . "' class='message correct clickable'>Charts</label></footer>";
 }
 
 function GetProductInfo($product_id) {
