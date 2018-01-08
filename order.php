@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <?php
 require('php/functions.php');
-
-
-// TODO: Add stage clases to my divs so I can hide and show them easily isntead of doing it for every div itself.
-// TODO: Add the SESSION variable, looking for someting like Array=>'Ritalin'=>2, 'Ritalin XL'=>1 , something with keys
-// TODO: Add javascript to add the items to the array when they are being pressed
-// TODO: Add the charts for the customer
 ?>
 <html lang="en">
     <head>

@@ -19,7 +19,7 @@ if(isset($_POST['selectorder'])){
 }
 
 if(isset($_POST['send_invoice'])){
-    require_once "Mail.php";
+    require_once "../php/Mail.php";
     require_once "Mail/mime.php";
     
     $from = '<support@gatherstuff.com>';

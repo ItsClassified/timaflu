@@ -1,5 +1,5 @@
-<?php
-require('fpdf.php');
+<?php // CLEANED
+require('php/fpdf.php');
 
 include('php/functions.php');
 
@@ -194,10 +194,6 @@ $pdf->Text(145, 263, "Opmerkingen & Voorwaarden");
 $pdf->SetFont('Arial', '', 10);
 $pdf->SetXY(0, 265);
 $pdf->Multicell(195,5, "Wij verzoeken u vriendelijk het verschuldigde bedrag binnen 14 dagen over te maken onder vermelding van het factuurnummer", 0, 'R'); 
-// $pdf->
-// $pdf->SetFont('Times','',12);
-// for($i=1;$i<=40;$i++)
-//     $pdf->Cell(0,10,'Printing line number '.$i,0,1);
 $pdf->Output();
 $pdf->Output("pdf/order_" . $order_id . ".pdf",'F');
 ?>
