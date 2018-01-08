@@ -1,2 +1,0 @@
-# timaflu
-Database Management System
