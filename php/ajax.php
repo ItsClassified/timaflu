@@ -1,11 +1,42 @@
 
 <?php
 require('functions.php');
+
+function GetPagesFooter($sql, $start){ ?>
+    <footer>
+    <label OnClick='Previous()'>Previous</label>
+        <label id='pages'>
+            <?php
+                $items = GetAmountOfPages($sql);
+                for ($i=0; $i < $items / 10; $i++) {
+                    $j = $i + 1;
+                    $k = $i * 10;
+                    if ($k == $start) {
+                        echo "<label id='$k' OnClick='GoToOrderPage(this)'><b>$j</b> </label>";
+                    } else {
+                        echo "<label id='$k' OnClick='GoToOrderPage(this)'>$j </label>";
+                    }  
+                }
+            ?>
+        </label>
+    <label OnClick='Next()'>Next</label>
+</footer> <?php
+}
+/**
+ * Ajax needed for purchase_step1.php
+ */
+if(isset($_POST['getlowproducts'])){
+    StockInfoActiveIngredient('', '');
+    GetPagesFooter("SELECT ai.name AS ainame FROM active_ingredients ai LEFT JOIN products p ON ai.id = p.active_ingredient_id LEFT JOIN stock s ON p.id = s.product_id LEFT JOIN strength_units su ON su.id = p.strength_unit WHERE s.current = 1 GROUP BY ai.id , p.strength_quantity", 10);
+}
+
 /**
  * Ajax needed for billing_Step1.php
  */
 if(isset($_POST['getorders'])){
     GetOrders($_POST['name'], $_POST['id']);
+    GetPagesFooter("SELECT * FROM orders as o INNER JOIN order_items as oi ON oi.order_id = o.id", 10);
+    
 }
 
 if(isset($_POST['selectorder'])){
