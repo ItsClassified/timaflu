@@ -494,6 +494,48 @@ function GetManufacturerList($aiid, $strengthquantity) {
     echo "</table>";
 }
 
+function GetManufacturerInfo($id) {
+    $db = ConnectDatabase();
+
+    $sql = "SELECT 
+                m.name AS name,
+                m.email AS email,
+                m.phone AS phone,
+                m.url AS url
+            FROM
+                manufacturers m
+            WHERE m.id = $id
+            ";
+
+    $result = $db->prepare($sql);
+    $result->execute();
+
+    $rows = $result->fetchAll(PDO::FETCH_ASSOC);
+    echo "<table class='stats sortable'>";
+    echo "<col style='width:30%'>";
+    echo "<col style='width:70%'>";
+    echo "<tbody>";
+        echo "<tr>";
+            echo "<td><span>Company</span></td>";
+            echo "<td><span>" . $rows[$i]['name'] . "</span></td>";
+        echo "</tr>";
+        echo "<tr>";
+                echo "<td><span>Email</span></td>";
+                echo "<td><span>" . $rows[$i]['email'] . "</span></td>";
+        echo "</tr>";
+        echo "<tr>";
+                echo "<td><span>Phone</span></td>";
+                echo "<td><span>" . $rows[$i]['phone'] . "</span></td>";
+        echo "</tr>";
+        echo "<tr>";
+                echo "<td><span>URL</span></td>";
+                echo "<td><span>" . $rows[$i]['url'] . "</span></td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    echo "</table>";
+}
+
 ?>
 
 
