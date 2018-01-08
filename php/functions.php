@@ -566,6 +566,7 @@ function GetManufacturerInfo($id) {
     echo "<col style='width:30%'>";
     echo "<col style='width:70%'>";
     echo "<tbody>";
+    for ($i=0; $i < sizeof($rows); $i++) { 
         echo "<tr>";
             echo "<td><span>Company</span></td>";
             echo "<td><span>" . $rows[$i]['name'] . "</span></td>";
