@@ -227,7 +227,7 @@ require('php/functions.php');
                                 <label OnClick='Previous()'>Previous</label>
                                 <label id='pages'>
                                     <?php
-                                        $items = GetAmountOfStockPages();
+                                        $items = GetAmountOfPages("SELECT * FROM stock WHERE current = 1");
                                         
                                         for ($i=0; $i < $items / 10; $i++) {
                                             $j = $i + 1;

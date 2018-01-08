@@ -6,13 +6,6 @@ if(isset($_POST['select_product_manufacturer'])){
     $_SESSION['aiid'] = $_POST['id'];
     $_SESSION['strength'] = $_POST['strength'];
 }
-/**
- * Ajax needed for purchase_step1.php
- */
-if(isset($_POST['getlowproducts'])){
-    StockInfoActiveIngredient('', '');
-    GetPagesFooter("SELECT ai.name AS ainame FROM active_ingredients ai LEFT JOIN products p ON ai.id = p.active_ingredient_id LEFT JOIN stock s ON p.id = s.product_id LEFT JOIN strength_units su ON su.id = p.strength_unit WHERE s.current = 1 GROUP BY ai.id , p.strength_quantity", 10);
-}
 
 /**
  * Ajax needed for billing_Step1.php
@@ -259,40 +252,4 @@ if(isset($_POST['getproducts'])) {
     </div>
 <?php
 }
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-// if(isset($_POST['maininfo'])) {
-//     DrawTable("SELECT p.name AS Name,
-//         p.strength_quantity AS Strength,
-//         su.unit AS Strengt_Unit,
-//         SUM(s.stock) AS Stock,
-//         s.product_id AS Product_Id
-//     FROM stock AS s
-//     INNER JOIN products AS p
-//         ON s.product_id = p.id
-//     INNER JOIN strength_units AS su
-//         ON p.strength_unit = su.id
-//     WHERE current = 1 GROUP BY product_id LIMIT 0,10");
-// }
-
-// if(isset($_POST['iteminfo'])) {
-//     echo "iteminfo";
-// }
-
-// if(isset($_POST['getpages'])) {
-//     for ($i=0; $i < 100 / 10; $i++) {
-//         $j = $i + 1;
-//         $k = $i * 10;
-//         if($k == $_POST['getpages']){
-//             echo "<label id='$k' OnClick='GoToPage(this)'><b>$j </b></label>";
-//         } else {
-//             echo "<label id='$k' OnClick='GoToPage(this)'>$j </label>";
-//         }
-//     }
-// }
-
 ?>

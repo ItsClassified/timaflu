@@ -107,6 +107,9 @@ require('php/functions.php');
             }});
         };
 
+        function CreateCustomer(el) {
+            $('#newcustomer').show();
+        }
         function RemoveCustomer(el) {
             var id = $(el).attr('value'); 
             
@@ -319,7 +322,7 @@ require('php/functions.php');
                                         <input id='customer_search_phone' class="cont12" type='text' placeholder="Phone Number"></input>
                                     </div>
                                     <div class="cont2">
-                                        <div class="message" >Create New</div> <!-- TODO FIX THIS buLLSHIT SO IT LOOKS BETTER -->
+                                        <div OnClick='CreateCustomer(this)' class="message" >Create New</div> <!-- TODO FIX THIS buLLSHIT SO IT LOOKS BETTER -->
                                     </div>
                                 </div>
                             </header>

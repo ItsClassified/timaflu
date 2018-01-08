@@ -20,32 +20,6 @@ require('php/functions.php');
         <script src="js/sorttable.js"></script>
 
         <script type="text/javascript">
-        var productsStart = 0;
-        
-        $.ajax({
-            type: 'post',
-            data: {getlowproducts: ' ', name: '', id: ''},
-            url: "/php/ajax.php", 
-            success: function(result){
-                $('#products').html(result);
-        }});
-
-        /**
-            Functions for showing the orders
-        */
-        function ShowProducts(el) {
-            var name = $('#products_search_name').val();
-            // var id = $('#order_search_order_id').val();
-        
-            $.ajax({
-                type: 'post',
-                data: {getlowproducts: ' ', name: name},
-                url: "/php/ajax.php", 
-                success: function(result){
-                    $('#orders').html(result);
-            }});
-        };
-
         function SelectProduct(el) {
             var id = $(el).attr('id');
             var strength = $(el).attr('value');
@@ -57,39 +31,6 @@ require('php/functions.php');
                 success: function(result){
                     window.location.href = "purchase_step2.php";
             }});
-        };
-
-        /**
-            Code needed for the switch between pages
-         */
-        function Next() {
-            var start = productsStart + 10;
-            var name = $('#products_search_name').val();
-
-            $.ajax({
-                type: 'post',
-                data: {getlowproducts: ' ', start: start, end: start + 10, name: name},
-                url: "/php/ajax.php",
-                success: function(result){
-                    $('#products').html(result);
-                    productsStart = start;
-            }});
-        };
-
-        function Previous() {
-            if (!productsStart == 0) {
-                var start = productsStart - 10;
-                var name = $('#products_search_name').val();
-
-                $.ajax({
-                    type: 'post', 
-                    data: {getlowproducts: ' ', start: start, end: start + 10, name: name},
-                    url: "/php/ajax.php",
-                    success: function(result){
-                        $('#products').html(result);
-                        productsStart = start;
-                }});
-            }
         };
         </script>
     </head>
@@ -162,7 +103,12 @@ require('php/functions.php');
                                     </div>
                                 </div>
                             </header>
-                           <div id="products"></div>
+                           <?php echo StockInfoActiveIngredient('', '');?>
+                           <footer>
+                                <label>Previous</label>
+                                <label><b>1</b></label>
+                                <label>Next</label>
+                            </footer>
                         </div>
                         <div class="cont3 card">
                             <header>

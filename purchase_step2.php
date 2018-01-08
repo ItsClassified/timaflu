@@ -121,7 +121,7 @@ require('php/functions.php');
                         </div>
                         <div class="cont3 card">
                             <header>
-                                <h4 class="title">Contact info for asked manufacturer</h4>
+                                <h4 class="title">Contact info for cheepest manufacturer</h4>
                                 <p class="description">Contact information for the manufacturer with lowest price</p>
                             </header>
                             <?php GetManufacturerInfo($_SESSION['mid']); ?>
