@@ -4,7 +4,7 @@ require('fpdf.php');
 include('php/functions.php');
 
     $db = ConnectDatabase();
-    $order_id = 4;
+    $order_id = 2;
 
     // Get customer information
     $sql = "SELECT c.*,  a.address FROM customers c
@@ -182,10 +182,11 @@ $pdf->SetFont('Arial', 'B', 10);
 $pdf->Text(145, 263, "Opmerkingen & Voorwaarden");
 $pdf->SetFont('Arial', '', 10);
 $pdf->SetXY(0, 265);
-$pdf->Multicell(195,5, "Wij verzoeken u vriendelijk het verschuldigde bedrag binnen 14 dagen over te maken onder vermleding van het factuurnummer", 0, 'R'); 
+$pdf->Multicell(195,5, "Wij verzoeken u vriendelijk het verschuldigde bedrag binnen 14 dagen over te maken onder vermelding van het factuurnummer", 0, 'R'); 
 // $pdf->
 // $pdf->SetFont('Times','',12);
 // for($i=1;$i<=40;$i++)
 //     $pdf->Cell(0,10,'Printing line number '.$i,0,1);
 $pdf->Output();
+$pdf->Output(D,'order_id.pdf'); 
 ?>
