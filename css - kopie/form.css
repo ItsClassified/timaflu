@@ -1,0 +1,106 @@
+input:disabled {
+    background: black;
+}
+
+input, textarea, select {
+    padding: 9px;
+    border: solid 1px #E5E5E5; 
+    width: 78%; /* Border of 1px... D: */
+    background: #FFFFFF;
+    box-sizing: border-box;
+}
+   
+textarea { 
+    width: 100%; 
+    min-height: 150px;
+    resize: vertical; /* So it can't be resized vertically */
+}
+   
+input:hover, textarea:hover, 
+input:focus, textarea:focus { 
+    border-color: rgba(35, 173, 255, 1);
+}
+
+.form label {
+    display: inline-block;
+    text-align: right;
+    margin-left: 2%;
+    width: 18%;
+    color: #999999;
+}
+  
+@media screen and (max-width: 1024px) {
+
+    input, select{
+        width: 75%;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    
+        .form label{
+            display: none;
+        }
+
+        input, select{
+            width: 100%;
+        }
+}
+
+.container {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

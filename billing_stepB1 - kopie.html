@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<?php
+require('php/functions.php');
+?>
+<html lang="en">
+    <head>
+        <title>Timaflu - Billing</title>
+        <link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>
+        <link rel="stylesheet" type="text/css" href="css/top.css"/>
+        <link rel="stylesheet" type="text/css" href="css/form.css" />
+        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/message.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <!-- <link href="css/stylesheet.css" rel="stylesheet" type="text/css"> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/charts.js"></script>
+        <script src="js/sorttable.js"></script>
+    </head>
+    <body>
+        <div id="main">
+            <header class="top">
+                <div class="logo">TIMAFLU</div>
+                <div class="title">January 4th, 2018</div>
+                <ul class="menu">
+                    <div class="dropdown"><!-- Needed for dropdown-content, so when hovering over it it keeps displaying -->
+                        <a href="index.html">
+                            <li><div class="profile-picture"></div><span>dr. B. Onderstal</span></li>
+                        </a>
+                        <ul class="dropdown-content">
+                            <a href="index.html"><li><img src="img/logout.png"><span>Logout</span></li></a>
+                            <a href="index.html"><li><img src="img/settings.png"><span>Settings</span></li></a>
+                        </ul>
+                    </div>
+                </ul>
+            </header>
+            <div class="container-main"> 
+                <header class="hero">
+                    <div class="step">
+                        <progress>Unknown</progress>
+                        <button type="button" formaction="billing_step1.html">&#x21A9; Return to <b>Order Display</b></button>
+                    </div>
+                </header>
+                <div class="main">
+                    <div class="row">
+                        <div class="cont9 card">
+                            <header>
+                                <h4 class="title">Outstanding invoices for customer <b>BENU Apotheek Ghen heij</b></h4>
+                                <p class="description"><div class="switcher red">&#8364; 6743,90</div></p>
+                                <div class="row">
+                                    <div class="cont12 card right content">
+                                        <input id='stock_search' class='cont12' type='text'></input>
+                                    </div>
+                                </div>
+                            </header>
+                            <table class="stats sortable">
+                                <col style="width:10%">
+                                <col style="width:10%">
+                                <col style="width:18%">
+                                <col style="width:22%">
+                                <col style="width:22%">
+                                <col style="width:18%">
+                                <thead>
+                                    <tr>
+                                        <th><span>Order ID</span></th>
+                                        <th><span>Invoice ID</span></th>
+                                        <th><span>Invoice total</span></th>
+                                        <th><span>First sent</span></th>
+                                        <th><span>Status</span></th>
+                                        <th><span>Mark paid</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span>7563548</span></td>
+                                        <td><span>23874</span></td>
+                                        <td><div class="switcher red"><span>&#8364; 845,27</span></div></td>
+                                        <td><div class="switcher orange"><span>17-12-2017 </span><div class="switcher white"><span>19 days ago</span></div></div></td>
+                                        <td><div class="switcher orange"><span>sent </span><div class="switcher white"><span>2&#215;</span></div></div></td>
+                                        <td><button>&#x2714; Mark paid</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>3245785</span></td>
+                                        <td><span>12964</span></td>
+                                        <td><div class="switcher red"><span>&#8364; 2039,55</span></div></td>
+                                        <td><div class="switcher red"><span>2-12-2017 </span><div class="switcher white"><span>34 days ago</span></div></div></td>
+                                        <td><div class="switcher red"><span>sent </span><div class="switcher white"><span class="blinker fast">3&#215;</span></div></div></td></td>
+                                        <td><button>&#x2714; Mark paid</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>8272348</span></td>
+                                        <td><span>12673</span></td>
+                                        <td><div class="switcher red"><span>&#8364; 3859,28</span></div></td>
+                                        <td><div class="switcher orange"><span>21-12-2017 </span><div class="switcher white"><span>15 days ago</span></div></div></td>
+                                        <td><div class="switcher orange"><span>sent </span><div class="switcher white"><span>2&#215;</span></div></div></td>
+                                        <td><button>&#x2714; Mark paid</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <footer>
+                                <label>Previous</label>
+                                <label><b>1</b></label>
+                                <label>Next</label>
+                            </footer>
+                        </div>
+                        <div class="cont3 card">
+                            <header>
+                                <h4 class="title">Customer information</h4>
+                                <p class="description">BENU Apotheek Ghen heij</p>
+                            </header>
+                            <table class="stats">
+                                <col style="width:30%">
+                                <col style="width:70%">
+                                <tbody>
+                                    <tr>
+                                        <td><span>Contact</span></td>
+                                        <td><span>Mevr. Drs. V. la Fontaine</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Phone</span></td>
+                                        <td><span><a href="tel:045 521 0772">045 521 0772</a></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>URL</span></td>
+                                        <td><span><a href="https://ghenheij.benuapotheek.nl" target="_blank">ghenheij.benuapotheek.nl</a></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <footer>
+                        <label>&#9400; 2017 | version 1.0 beta 6</label>
+                        <label><a href="sitemap.html"><img src="img/sitemap.png" alt="Sitemap"></a>&#10095; Sitemap</label>
+                        <label>
+                            <a href="index.html">Home</a>
+                            <span> - </span>
+                            <a href="stats.html">Stats</a>
+                            <span> - </span>
+                            <a href="contact.html">Contact</a>
+                            <span> - </span>
+                            <a href="game.html">Game</a>
+                            <span> - </span>
+                            <a href="aboutus.html">About</a>
+                        </label>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

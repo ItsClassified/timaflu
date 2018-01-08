@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<?php
+require('php/functions.php');
+?>
+<html lang="en">
+    <head>
+        <title>Timaflu - Distribution</title>
+        <link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>
+        <link rel="stylesheet" type="text/css" href="css/top.css"/>
+        <link rel="stylesheet" type="text/css" href="css/form.css" />
+        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/message.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <!-- <link href="css/stylesheet.css" rel="stylesheet" type="text/css"> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/charts.js"></script>
+        <script src="js/sorttable.js"></script>
+    </head>
+    <body>
+        <div id="main">
+            <header class="top">
+                <div class="logo">TIMAFLU</div>
+                <div class="title">January 4th, 2018</div>
+                <ul class="menu">
+                    <div class="dropdown"><!-- Needed for dropdown-content, so when hovering over it it keeps displaying -->
+                        <a href="index.html">
+                            <li><div class="profile-picture"></div><span>dr. B. Onderstal</span></li>
+                        </a>
+                        <ul class="dropdown-content">
+                            <a href="index.html"><li><img src="img/logout.png"><span>Logout</span></li></a>
+                            <a href="index.html"><li><img src="img/settings.png"><span>Settings</span></li></a>
+                        </ul>
+                    </div>
+                </ul>
+            </header>
+            <div class="container-main"> 
+                <header class="hero">
+                    <div class="step">
+                        <progress>Unknown</progress>
+                        <button type="button" formaction="billing_step1.html">&#x274C; Cancel packing</button>
+                    </div>
+                </header>
+                <div class="main">
+                    <div class="row">
+                        <div class="cont3 card">
+                            <header>
+                                <h4 class="title">Customer details for order <b>8793645</b></h4>
+                                <p class="description">SAL Apotheek Brandevoort</p>
+                            </header>
+                            <table class="stats">
+                                <col style="width:30%">
+                                <col style="width:70%">
+                                <tbody>
+                                    <tr>
+                                        <td><span>Contact</span></td>
+                                        <td><span>Dhr. W.H. Eekhof</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Address</span></td>
+                                        <td><span>De Plaetse 86</br>5708 ZJ Helmond</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Type</span></td>
+                                        <td><span>Billing</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Phone</span></td>
+                                        <td><span>0492 370 047</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button>Print shipping label</button>
+                        </div>
+                        <div class="cont9 card">
+                            <header>
+                                <h4 class="title">Order contents for order <b>8793645</b></h4>
+                                <p class="description">&#9200;&#x1F4E4 40 min</p>
+                                <div class="row">
+                                    <div class="cont12 card right content">
+                                        <input id='stock_search' class='cont12' type='text'></input>
+                                    </div>
+                                </div>               
+                            </header>
+                            <table class="stats sortable">
+                                <col style="width:50%">
+                                <col style="width:10%">
+                                <col style="width:15%">
+                                <col style="width:25%">
+                                <thead>
+                                    <tr>
+                                        <th><span>Product</span></th>
+                                        <th><span>Qt.</span></th>
+                                        <th><span>Box</span></th>
+                                        <th><span>Mark as packed</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span>Selokeen<sup>&#174;</sup> ZOC 50 (47,5 mg)</span></td>
+                                        <td><span>150</span></td>
+                                        <td><div class="switcher grey"><span>A468</span></div></td>
+                                        <td><button type="button">&#x1F4E6 Mark all packed</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>MAXALT<sup>&#174;</sup> smelt (10 mg) (grootverp. 50st.)</span></td>
+                                        <td><span>5</span></td>
+                                        <td><div class="switcher grey"><span>&#x1F916ID 7 </span><div class="switcher white">&#x00B1; 3 min.</div></div></td>
+                                        <td><progress>Unknown</progress></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Medikinet CR<sup>&#174;</sup> (30 mg) (grootverp. 50st.)</span></td>
+                                        <td><span>3</span></td>
+                                        <td><div class="switcher grey"><span>B238</span></div></td>
+                                        <td><button type="button">&#x1F4E6 Mark all packed</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <footer>
+                                <label>Previous</label>
+                                <label><b>1</b></label>
+                                <label>Next</label>
+                            </footer>
+                        </div>
+                    </div>
+                    <footer>
+                        <label>&#9400; 2017 | version 1.0 beta 6</label>
+                        <label><a href="sitemap.html"><img src="img/sitemap.png" alt="Sitemap"></a>&#10095; Sitemap</label>
+                        <label>
+                            <a href="index.html">Home</a>
+                            <span> - </span>
+                            <a href="stats.html">Stats</a>
+                            <span> - </span>
+                            <a href="contact.html">Contact</a>
+                            <span> - </span>
+                            <a href="game.html">Game</a>
+                            <span> - </span>
+                            <a href="aboutus.html">About</a>
+                        </label>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

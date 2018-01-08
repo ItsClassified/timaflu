@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<?php
+require('php/functions.php');
+?>
+<html lang="en">
+    <head>
+        <title>Timaflu - Distribution</title>
+        <link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>
+        <link rel="stylesheet" type="text/css" href="css/top.css"/>
+        <link rel="stylesheet" type="text/css" href="css/form.css" />
+        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/message.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <!-- <link href="css/stylesheet.css" rel="stylesheet" type="text/css"> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/charts.js"></script>
+        <script src="js/sorttable.js"></script>
+    </head>
+    <body>
+        <div id="main">
+            <header class="top">
+                <div class="logo">TIMAFLU</div>
+                <div class="title">January 4th, 2018</div>
+                <ul class="menu">
+                    <div class="dropdown"><!-- Needed for dropdown-content, so when hovering over it it keeps displaying -->
+                        <a href="index.html">
+                            <li><div class="profile-picture"></div><span>dr. B. Onderstal</span></li>
+                        </a>
+                        <ul class="dropdown-content">
+                            <a href="index.html"><li><img src="img/logout.png"><span>Logout</span></li></a>
+                            <a href="index.html"><li><img src="img/settings.png"><span>Settings</span></li></a>
+                        </ul>
+                    </div>
+                </ul>
+            </header>
+            <div class="container-main"> 
+                <header class="hero">
+                    <ul class="items">           
+                        <a href="index.html">
+                            <li>
+                                <div class="notify"><div class="blinker green"></div></div>
+                                <img src="img/dashboard-white.png">
+                                <span class="description">Dash&shy;board</span>
+                            </li>
+                        </a>
+                        <a href="order.php">
+                            <li>
+                                <div class="notify"><div class="blinker green"></div></div>
+                                <img src="img/neworder.png">
+                                <span class="description">Create Order</span>
+                            </li>
+                        </a>
+                        <a href="stock.php">
+                            <li>
+                                <div class="notify"><div class="blinker red"></div></div>
+                                <img src="img/stock.png">
+                                <span class="description">Stock</span>
+                            </li>
+                        </a>
+                        <a href="billing.php">
+                            <li>
+                                <div class="notify"><div class="blinker orange"></div></div>
+                                <img src="img/invoice.png">
+                                <span class="description">Billing</span>
+                            </li>
+                        </a>
+                        <a href="distribution.php">
+                            <li>
+                                <div class="notify"><div class="blinker red"></div></div>
+                                <img src="img/distr.png">
+                                <span class="description">Distribution</span>
+                            </li>
+                        </a>
+                    </ul>
+                </header>
+                <div class="main">
+                    <div class="row">
+                        <div class="cont6 card">
+                            <header>
+                                <h4 class="title">Robot status</h4>
+                                <p class="description">Select a robot to view history</p>
+                            </header>
+                            <table class="stats sortable">
+                                <col style="width:25%">
+                                <col style="width:75%">
+                                <tbody>
+                                    <tr>
+                                        <th><span>Robot ID</span></th>
+                                        <th><span>Status</span></th>
+                                    </tr>
+                                    <tr>
+                                        <td><span>1</span></td>
+                                        <td><div class="switcher green"><span>idle</span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>2</span></td>
+                                        <td><div class="switcher red"><span class="blinker fast">error </span><div class="switcher white"><span>path blocked</span></div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>3</span></td>
+                                        <td><div class="switcher grey"><span class="blinker">collecting </span><div class="switcher white"><span>order XXXXX</span></div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>4</span></td>
+                                        <td><div class="switcher green"><span>idle</span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>5</span></td>
+                                        <td><div class="switcher green"><span>idle</span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>6</span></td>
+                                        <td><div class="switcher grey"><span class="blinker">collecting </span><div class="switcher white"><span>order XXXXX</span></div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>7</span></td>
+                                        <td><div class="switcher grey"><span class="blinker">collecting </span><div class="switcher white"><span>order XXXXX</span></div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>8</span></td>
+                                        <td><div class="switcher green"><span>idle</span></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="cont6 card">
+                            <img class="gauge" src="img/gauge.png">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="cont3 card">
+                            <header>
+                                <h4 class="title">Orders ready for packing</h4>
+                                <p class="description">Select an order to start packing process</p>
+                                <div class="row">
+                                    <div class="cont12 card right content">
+                                        <input id='stock_search' class='cont12' type='text'></input>
+                                    </div>
+                                </div>
+                            </header>
+                            <table class="stats sortable">
+                                <col style="width:30%">
+                                <col style="width:70%">
+                                <tbody>
+                                    <tr>
+                                        <th><span>Order ID</span></th>
+                                        <th><span>Pack before</span></th>
+                                    </tr>
+                                    <tr>
+                                        <td><span>6152374</span></td>
+                                        <td><div class="switcher grey"><span>&#9200; 1480 min </span><div class="switcher white"><span>tomorrow 16:00</span></div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>8793645</span></td>
+                                        <td><div class="switcher red"><span class="blinker fast">&#9200; 40 min </span><div class="switcher white"><span>today 16:00</span></div></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <footer>
+                                <label>Previous</label>
+                                <label><b>1</b></label>
+                                <label>Next</label>
+                            </footer>
+                        </div>
+                        <div class="cont9 card">
+                            <header>
+                                <h4 class="title">Order Display</h4>
+                                <p class="description">Select an order to view its contents</p>
+                                <div class="row">
+                                    <div class="cont12 card right content">
+                                        <input id='stock_search' class='cont12' type='text'></input>
+                                    </div>
+                                </div>
+                            </header>
+                            <table class="stats sortable">
+                                <col style="width:10%">
+                                <col style="width:28%">
+                                <col style="width:20%">
+                                <col style="width:22%">
+                                <col style="width:20%">
+                                <tbody>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Costumer name</th>
+                                        <th>Order completed for</th>
+                                        <th>Status</th>
+                                        <th>First invoiced</th>
+                                    </tr>
+                                    <tr>
+                                        <td>7563548</td>
+                                        <td>Buurtapotheek Albergen</td>
+                                        <td><div class="switcher red">20 days</div></td>
+                                        <td><div class="switcher orange">invoiced <div class="switcher white">2&#215;</div></div></td>
+                                        <td><div class="switcher orange">17-12-2017 <div class="switcher white">19 days ago</div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3245785</td>
+                                        <td>Apotheek De Poldervaart</td>
+                                        <td>2 days</td>
+                                        <td><div class="switcher green">billable <div class="switcher white">&#8364; 4537,78</div></div></td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8272348</td>
+                                        <td>Alphega Apotheek Cleij</td>
+                                        <td>-</td>
+                                        <td><div class="switcher grey">awaits completion <div class="switcher white">489 min</div></div></td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8793645</td>
+                                        <td>SAL Apotheek Brandevoort</td>
+                                        <td>1 day</td>
+                                        <td><div class="switcher green">billable <div class="switcher white">&#8364; 1036,65</div></div></td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6152374</td>
+                                        <td>Buurtapotheek Albergen</td>
+                                        <td>just now</td>
+                                        <td><div class="switcher green">billable <div class="switcher white">&#8364; 3254,57</div></div></td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2934904</td>
+                                        <td>Alphega Apotheek De Betuwe</td>
+                                        <td>-</td>
+                                        <td><div class="switcher grey">awaits completion <div class="switcher white">12 min</div></div></td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3765344</td>
+                                        <td>Buurtapotheek Albergen</td>
+                                        <td>-</td>
+                                        <td><div class="switcher grey">awaits completion <div class="switcher white">83 min</div></div></td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8675476</td>
+                                        <td>Alphega Apotheek De Betuwe</td>
+                                        <td>-</td>
+                                        <td><div class="switcher grey">awaits completion <div class="switcher white">156 min</div></div></td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8476586</td>
+                                        <td>SAL Apotheek Brandevoort</td>
+                                        <td>-</td>
+                                        <td><div class="switcher grey">awaits completion <div class="switcher white">54 min</div></div></td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1263535</td>
+                                        <td>Apotheek De Poldervaart</td>
+                                        <td><div class="switcher orange">6 days</div></td>
+                                        <td><div class="switcher green">billable <div class="switcher white">&#8364; 7238,64</div></div></td>
+                                        <td>-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <footer>
+                                <label>Previous</label>
+                                <label><b>1</b> 2</label>
+                                <label>Next</label>
+                            </footer>
+                        </div>
+                    </div>
+                    <footer>
+                        <label>&#9400; 2017 | version 1.0 beta 6</label>
+                        <label><a href="sitemap.html"><img src="img/sitemap.png" alt="Sitemap"></a>&#10095; Sitemap</label>
+                        <label>
+                            <a href="index.html">Home</a>
+                            <span> - </span>
+                            <a href="stats.html">Stats</a>
+                            <span> - </span>
+                            <a href="contact.html">Contact</a>
+                            <span> - </span>
+                            <a href="game.html">Game</a>
+                            <span> - </span>
+                            <a href="aboutus.html">About</a>
+                        </label>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
