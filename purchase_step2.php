@@ -107,10 +107,8 @@ require('php/functions.php');
             </header>
             <div class="container-main"> 
                 <header class="hero">
-<<<<<<< HEAD
                     <div class="step">
                     </div>
-=======
                     <ul class="items">           
                         <a href="index.html">
                             <li>
@@ -148,13 +146,11 @@ require('php/functions.php');
                             </li>
                         </a>
                     </ul>
->>>>>>> 6103376bbee87dec43ecf891b096ebd82e1f0548
                 </header>
                 <div class="main">
                     <div class="row">
                         <div class="cont9 card">
                             <header>
-<<<<<<< HEAD
                                 <h4 class="title">Manufacturers for active ingredient <?php echo $_SESSION['ainame']; ?></h4>
                                 <p class="description">...</p>
                             </header>
@@ -166,7 +162,6 @@ require('php/functions.php');
                                 <p class="description">Contact information for the manufacturer with lowest price</p>
                             </header>
                             <div id="manufacturer_info"></div>
-=======
                                 <h4 class="title">Low Stock Display</h4>
                                 <p class="description">Select a product to view different manufacturer prices</p>
                                 <div class="row">
@@ -216,7 +211,6 @@ require('php/functions.php');
                                 <label><b>1</b></label>
                                 <label>Next</label>
                             </footer>
->>>>>>> 6103376bbee87dec43ecf891b096ebd82e1f0548
                         </div>
                     </div>
                     <footer>
