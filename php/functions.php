@@ -372,6 +372,7 @@ function StockInfoActiveIngredient($name, $id) {
 
     $sql = "SELECT 
                 ai.name AS ainame,
+                ai.id AS aiid,
                 p.strength_quantity AS pstrength,
                 su.unit AS sunit,
                 ai.minimum_stock AS minstock,
@@ -410,17 +411,16 @@ function StockInfoActiveIngredient($name, $id) {
     echo "</thead>";
     echo "<tbody>";
     for ($i=0; $i < sizeof($rows); $i++) {
-        echo "<tr OnClick='SelectOrder(this)' id='". $rows[$i]['aiid'] . "'>";
+        echo "<tr OnClick='alert(this)' id='". $rows[$i]['aiid'] . "'>";
             echo "<td><span>" . $rows[$i]['ainame'] . "</span></td>";
             echo "<td><span>" . $rows[$i]['pstrength'] . ' ' . $rows[$i]['sunit'] . "</span></td>";
             echo "<td><span>" . $rows[$i]['nrman'] . "</span></td>";
             echo "<td><span>" . $rows[$i]['minstock'] . "</span></td>"; // TODO fix date
             if($rows[$i]['curstock'] <= $rows[$i]['minstock']){
-                echo "<td><div class='switcher red'><span class="blinker">" . $rows[$i]['curstock'] . "</span></div></td>";
+                echo "<td><div class='switcher red'><span class='blinker'>" . $rows[$i]['curstock'] . "</span></div></td>";
             } else{
                 echo "<td><div class='switcher grey'><span>" . $rows[$i]['curstock'] . "</span></div></td>";
             }
-            echo "<td><span>" . $rows[$i]['curstock'] . "</span></div></td>";
         echo "</tr>";
     }
     echo "</tbody>";
