@@ -57,9 +57,9 @@ function GetOrders($name, $id) {
     echo "<col style='width:20%'>";
     echo "<thead>";
         echo "<tr>";
-            echo "<th><span>Order ID</span></th>";
+            echo "<th><span>ID</span></th>";
             echo "<th><span>Costumer name</span></th>";
-            echo "<th><span>Order completed for</span></th>";
+            echo "<th><span>Completed for</span></th>";
             echo "<th><span>Status</span></th>";
             echo "<th><span>First invoiced</span></th>";
         echo "</tr>";
@@ -365,6 +365,66 @@ function GetStockInfoProduct($productid){
         echo "<table class='stats'>";
         // Print the edit/close/delete buttons, add EditProductInfo to onlcick so it does something when we click it later on
         echo "<footer><label class='message correct clickable' OnClick='EditProductInfo(this)' id='edit' value='" . $productid . "'>Edit</label><label class='message warn clickable'>Close</label><label OnClick='ShowChartsStock(this)' id='" . $productid . "' class='message correct clickable'>Charts</label></footer>";
+}
+
+function StockInfoActiveIngredient($name, $id) {
+    $db = ConnectDatabase();
+
+    $sql = "SELECT 
+                ai.name AS ainame,
+                p.strength_quantity AS pstrength,
+                su.unit AS sunit,
+                ai.minimum_stock AS minstock,
+                COUNT(DISTINCT (p.manufacturer_id)) AS nrman,
+                SUM(s.stock * p.parcel_size) AS curstock
+            FROM
+                active_ingredients ai
+                    LEFT JOIN
+                products p ON ai.id = p.active_ingredient_id
+                    LEFT JOIN
+                stock s ON p.id = s.product_id
+                    LEFT JOIN
+                strength_units su ON su.id = p.strength_unit
+            WHERE s.current = 1
+            GROUP BY ai.id , p.strength_quantity
+            ";
+
+    $result = $db->prepare($sql);
+    $result->execute();
+
+    $rows = $result->fetchAll(PDO::FETCH_ASSOC);
+    echo "<table class='stats sortable'>";
+    echo "<col style='width:40%'>";
+    echo "<col style='width:25%'>";
+    echo "<col style='width:15%'>";
+    echo "<col style='width:10%'>";
+    echo "<col style='width:15%'>";
+    echo "<thead>";
+        echo "<tr>";
+            echo "<th><span>Active ingredient</span></th>";
+            echo "<th><span>Strength</span></th>";
+            echo "<th><span>No. of manufacturers</span></th>";
+            echo "<th><span>Current stock</span></th>";
+            echo "<th><span>Minimum stock</span></th>";
+        echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+    for ($i=0; $i < sizeof($rows); $i++) {
+        echo "<tr OnClick='SelectOrder(this)' id='". $rows[$i]['aiid'] . "'>";
+            echo "<td><span>" . $rows[$i]['ainame'] . "</span></td>";
+            echo "<td><span>" . $rows[$i]['pstrength'] . ' ' . $rows[$i]['sunit'] . "</span></td>";
+            echo "<td><span>" . $rows[$i]['nrman'] . "</span></td>";
+            echo "<td><span>" . $rows[$i]['minstock'] . "</span></td>"; // TODO fix date
+            if($rows[$i]['curstock'] <= $rows[$i]['minstock']){
+                echo "<td><div class='switcher red'><span class="blinker">" . $rows[$i]['curstock'] . "</span></div></td>";
+            } else{
+                echo "<td><div class='switcher grey'><span>" . $rows[$i]['curstock'] . "</span></div></td>";
+            }
+            echo "<td><span>" . $rows[$i]['curstock'] . "</span></div></td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    echo "</table>";
 }
 
 ?>
