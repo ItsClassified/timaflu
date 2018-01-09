@@ -19,7 +19,9 @@ if(isset($_POST['send_invoice'])){
     require_once "Mail/mime.php";
     
     $from = '<support@gatherstuff.com>';
-    $to = 'karsmiesen@ziggo.nl';
+    // $to = 'karsmiesen@ziggo.nl';
+    // $to = 'yannickhoek@hotmail.com';
+    $to = 'yannickhoek@icloud.com';
     $subject = 'Factuur: <FactuurID>';
     
     $headers = array(
@@ -29,8 +31,8 @@ if(isset($_POST['send_invoice'])){
     );
     
     $text = "";
-    $html = "Hierbij ontvangt u van ons een factuur als bijlage.<br>Wij verzoeken u het factuurbedrag binnen 30 dagen na factuurdatum over te maken onder vermelding van factuur- en debiteurnummer.<br><br>
-    <font color='grey'>Hereby enclosed you receive an invoice.<br>We ask you to transfer the invoice amount within 30 days after invoicedate, stating invoice- and customernumber.</font><br><br>
+    $html = "Hierbij ontvangt u van ons een factuur als bijlage.<br>Wij verzoeken u het factuurbedrag binnen 14 dagen na factuurdatum over te maken onder vermelding van factuur- en debiteurnummer.<br><br>
+    <font color='grey'>Hereby enclosed you receive an invoice.<br>We ask you to transfer the invoice amount within 14 days after invoicedate, stating invoice- and customernumber.</font><br><br>
     Met vriendelijke groet, With kind regards,<br><br>
     Timaflu";
     

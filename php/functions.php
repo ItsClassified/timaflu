@@ -3,7 +3,8 @@ session_start();
 
 function ConnectDatabase() {
     // $db = new PDO('mysql:host=databases.aii.avans.nl;dbname=mcbeurde1_db;charset=utf8mb4', 'mcbeurde1', 'Ab12345');
-    $db = new PDO('mysql:host=databases.aii.avans.nl;dbname=mcbeurde1_db2;charset=utf8mb4', 'mcbeurde1', 'Ab12345');
+    // $db = new PDO('mysql:host=databases.aii.avans.nl;dbname=mcbeurde1_db2;charset=utf8mb4', 'mcbeurde1', 'Ab12345');
+    $db = new PDO('mysql:host=db.gatherstuff.com;dbname=md422083db395722;charset=utf8mb4', 'md422083db395722', '8NTLTJYD');
     // $db = new PDO('mysql:host=localhost;dbname=timaflu;charset=utf8mb4', 'root', '');
 
     return $db;
@@ -263,10 +264,6 @@ function GetProducts($start, $end, $name, $id, $ingredient) {
             echo "<td>" . $rows[$i]['price'] . "</td>";   
         echo "</tr>";
     }
-}
-
-function AddItemToList($product_id, $amount) {
-
 }
 
 ////////////////////////////////////////////////////////////////////////////
